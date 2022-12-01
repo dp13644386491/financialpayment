@@ -1,14 +1,14 @@
 package com.jr.entry;
 
 public class User {
-    private int id;
-    private String name;
-    private String enterPriseId;
-    private String phone;
-    private String account;
-    private String password;
-    private String idcardName;
-    private String idcardNo;
+    private int id;//用户主键
+    private String name;//用户名
+    private String enterPriseId;//企业id
+    private String phone;//手机号
+    private String account;//账号
+    private String password;//密码
+    private String idcardName;//身份证姓名
+    private String idcardNo;//身份证号码
 
     public User() {
     }

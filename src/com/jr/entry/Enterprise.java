@@ -1,15 +1,15 @@
 package com.jr.entry;
-
+//企业表对应的实体类
 public class Enterprise {
 
-    private int id;
-    private String name;
-    private String socialUniformCcode;
-    private String email;
-    private String phone;
-    private String address;
-    private String scale;
-    private String fax;
+    private int id;//企业id
+    private String name;//企业名称
+    private String socialUniformCcode;//社会统一代码
+    private String email;//邮箱
+    private String phone;//企业电话
+    private String address;//企业注册详细地址
+    private String scale;//企业规模
+    private String fax;//传真
 
     public Enterprise() {
     }

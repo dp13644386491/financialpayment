@@ -1,5 +1,4 @@
 package com.jr.biz.impl;
-
 import com.jr.biz.IReviewrecordBiz;
 import com.jr.entry.Reviewrecord;
 
@@ -16,7 +15,6 @@ public class ReviewrecordBizImpl implements IReviewrecordBiz {
 
     /**
      * 根据开单no获取审核记录信息
-     * @param ticketId
      * @return
      */
     @Override

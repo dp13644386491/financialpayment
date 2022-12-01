@@ -1,20 +1,20 @@
 package com.jr.entry;
 
 import java.util.Date;
-
+//开单表对应的实体类
 public class Ticketopen {
-    private int id;
-    private String no;
-    private String enterPriseId;
-    private String acquirerEnterPriseId;
-    private double amount;
-    private int institutyId;
-    private Date createTime;
-    private Date expiryTime;
-    private String paymentInterestType;
-    private String status;
-    private String uplinkAddress;
-    private String ticketRemark;
+    private int id;//开单表的id
+    private String no;//凭证编号
+    private String enterPriseId;//开单企业id
+    private String acquirerEnterPriseId;//收单企业id
+    private double amount;//凭证金额
+    private int institutyId;//金融机构主键id
+    private Date createTime;//开单日期
+    private Date expiryTime;//到期日期
+    private String paymentInterestType;//付息方式
+    private String status;//票据状态
+    private String uplinkAddress;//上链地址
+    private String ticketRemark;//开单备注
 
     public Ticketopen() {
     }

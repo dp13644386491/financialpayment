@@ -1,8 +1,8 @@
 package com.jr.entry;
-
+//金融机构表
 public class Instituty {
-    private int id;
-    private String name;
+    private int id;//金融机构id
+    private String name;//金融机构名称
 
     public Instituty() {
     }

@@ -1,14 +1,14 @@
 package com.jr.entry;
 
 import java.util.Date;
-
+//审核记录表实体类
 public class Reviewrecord {
-    private int id;
-    private int ticketOpenId;
-    private int creatorId;
-    private Date createTime;
-    private String reviewStatus;
-    private String remark;
+    private int id;//审核记录id
+    private int ticketOpenId;//开单主键id
+    private int creatorId;//创建人id
+    private Date createTime;//创建时间
+    private String reviewStatus;//审核状态
+    private String remark;//审核备注
 
     public Reviewrecord(int id, int ticketOpenId, int creatorId, Date createTime, String reviewStatus, String remark) {
         this.id = id;
