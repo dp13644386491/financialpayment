@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <html>
 
 <head>
@@ -101,7 +102,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证编号</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    N20220328000001
+                                    ${viewUtility.no}
                                 </div>
                             </div>
                         </form>
@@ -111,7 +112,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">处理状态</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    开单中<span style="font-size: 12px;color: #999;margin-left: 5px;"> 内部复核中</span>
+                                    ${viewUtility.status}<span style="font-size: 12px;color: #999;margin-left: 5px;"> 内部复核中</span>
                                 </div>
                             </div>
                         </form>
@@ -121,7 +122,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">开单企业</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    百度科技有限公司
+                                    ${viewUtility.openename}
                                 </div>
                             </div>
                         </form>
@@ -131,7 +132,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    91110000802100XXXX
+                                    ${viewUtility.openescu}
                                 </div>
                             </div>
                         </form>
@@ -141,7 +142,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">收单企业</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    腾讯科技有限公司
+                                    ${viewUtility.receiptename}
                                 </div>
                             </div>
                         </form>
@@ -151,7 +152,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    91110000802100AAAA
+                                    ${viewUtility.receiptescu}
                                 </div>
                             </div>
                         </form>
@@ -161,7 +162,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证金额</label>
                                 <div class="am-u-sm-9" style="font-size: 19px;color: red;font-weight: 500;">
-                                    10,000,000.00元
+                                    ${viewUtility.amount}
                                 </div>
                             </div>
                         </form>
@@ -171,7 +172,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">金融机构</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    工商银行
+                                    ${viewUtility.institutyname}
                                 </div>
                             </div>
                         </form>
@@ -181,7 +182,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">开单日期</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    2021-03-28
+                                    ${viewUtility.createTime}
                                 </div>
                             </div>
                         </form>
@@ -191,7 +192,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">到期日期</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    2021-04-28 <span style="font-size: 12px;color: #999">剩余 10 天</span>
+                                    ${viewUtility.expriyTime} <span style="font-size: 12px;color: #999">剩余 10 天</span>
                                 </div>
                             </div>
                         </form>
@@ -201,7 +202,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">付息方式</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    融资企业付息
+                                    ${viewUtility.paymentInterestItype}
                                 </div>
                             </div>
                         </form>
@@ -211,7 +212,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">备注</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    备注信息备注信息备注信息备注信息备注信息备注信息备注信息
+                                    ${viewUtility.ticketRemark}
                                 </div>
                             </div>
                         </form>

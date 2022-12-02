@@ -22,7 +22,6 @@
                 eval("var pageHelper="+str);
 
                 for(var i=0;i<pageHelper.pageList.length;i++){
-                     alert(45);
                     var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].acquirerEnterPriseId+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
@@ -30,14 +29,14 @@
                         pageHelper.pageList[i].institutyId+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
-                        pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='check-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+                        pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='rds?no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
                     $(obj).appendTo("[id='doc-modal-list']");
-
                 }
+
                 //看见分页序号超链接
-                for(var i=0;i<=pageHelper.totalPage;i++){
+                for(var i=1;i<=pageHelper.totalPage;i++){
                     var obj="<li><a value='"+i+"'>"+i+"</a></li>";
-                    $(obj).appendTo("[class='am-pagination tpl-pagination']");
+                    $(obj).appendTo("[class='am-disabled']");
                 }
             });
             //窗体加载完后，给分页超链接绑定一个点击事件
@@ -45,7 +44,7 @@
                 // 当a超链接点击的时候，向后台服务器发送ajax请求：
                 var val=$(this)[0].getAttribute("value");
 
-                $.get("ms","i=2&index="+val,function (str) {
+                $.get("ms","index="+val,function (str) {
                     eval("var pageHelper="+str);
                     //清空tr行
                     $("tbody").empty();
@@ -58,13 +57,21 @@
                             pageHelper.pageList[i].institutyId+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='check-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span></span>"+复核+"</span></a></div></div></td></tr>";
+                            pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
                         $(obj).appendTo("tbody");
 
                     }
                 })
             });
 
+            //窗体加载完，加载公司名称
+            $.get("eps",function (str) {
+                eval("var list="+str);
+                for(var i=0;i<list.length;i++){
+                    var obj="<option value='"+list[i].id+"'>"+list[i].name+"</option>"
+                    $(obj).appendTo("[name='enterprisename']");
+                }
+            });
         });
 
 
@@ -150,21 +157,21 @@
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">收单企业</span>
-                            <select data-am-selected="{btnSize: 'sm'}">
+                            <select name="enterprisename" class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择收单企业</option>
-                                <option value="a">百度科技有限公司</option>
+                                <%--<option value="a">百度科技有限公司</option>
                                 <option value="b">京东集团</option>
-                                <option value="c">小米</option>
+                                <option value="c">小米</option>--%>
                             </select>
                         </div>
                     </div>
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">开单企业</span>
-                            <select class="am-form-field" data-am-selected="{btnSize: 'sm'}">
+                            <select name="enterprisename" class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择开单企业</option>
-                                <option value="a">腾讯科技有限公司</option>
-                                <option value="b">隆基股份有限公司</option>
+                                <%--<option value="a">腾讯科技有限公司</option>
+                                <option value="b">隆基股份有限公司</option>--%>
                             </select>
                         </div>
                     </div>

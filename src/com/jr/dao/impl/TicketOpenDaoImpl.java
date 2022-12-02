@@ -40,7 +40,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         List<Ticketopen> list = new ArrayList<>();
         try {
             con= DBHelper.getConn();
-            String sql="SELECT * FROM ticket_open WHERE status='A' " +sqlHelper.sqlConcat();
+            String sql="SELECT * FROM ticket_open WHERE status='B' " +sqlHelper.sqlConcat();
             System.out.println(sql);
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
@@ -93,7 +93,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         int num=0;
         try {
             con=DBHelper.getConn();
-            String sql = "SELECT COUNT(id) FROM ticket_open WHERE status='开单中'" + sqlHelper.sqlConcat();
+            String sql = "SELECT COUNT(id) FROM ticket_open WHERE status='B'" + sqlHelper.sqlConcat();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -115,11 +115,11 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
      * 查询分页信息集合
      */
     @Override
-    public List<Ticketopen> QueryByPage(PageHelper pageHelper) {
+    public List<Ticketopen> QueryByPage(PageHelper pageHelper,SqlHelper sqlHelper) {
         List<Ticketopen> list=new ArrayList<>();
         try {
             con=DBHelper.getConn();
-            String sql="select * from province limit ?,?";
+            String sql="select * from ticket_open WHERE status='B'" + sqlHelper.sqlConcat()+" limit ?,?";
             ps=con.prepareStatement(sql);
             ps.setInt(1,pageHelper.getStartNum());
             ps.setInt(2,pageHelper.getPageSize());

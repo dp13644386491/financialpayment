@@ -36,6 +36,6 @@ public interface ITicketOpenDao {
     /**
      * 查询分页信息集合
      */
-    public List<Ticketopen> QueryByPage(PageHelper pageHelper);
+    public List<Ticketopen> QueryByPage(PageHelper pageHelper,SqlHelper sqlHelper);
 
 }

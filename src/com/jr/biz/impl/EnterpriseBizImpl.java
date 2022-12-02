@@ -1,11 +1,13 @@
 package com.jr.biz.impl;
 
 import com.jr.biz.IEnterpriseBiz;
+import com.jr.dao.impl.EnterpriseDaoImpl;
 import com.jr.entry.Enterprise;
 
 import java.util.List;
 
 public class EnterpriseBizImpl implements IEnterpriseBiz {
+    EnterpriseDaoImpl edi = new EnterpriseDaoImpl();
     /*
      * 通过id获取企业信息
      * */
@@ -19,6 +21,6 @@ public class EnterpriseBizImpl implements IEnterpriseBiz {
      * */
     @Override
     public List<Enterprise> getAllEnterpriseNames() {
-        return null;
+        return edi.queryAllEnterpriseNames();
     }
 }

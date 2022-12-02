@@ -70,7 +70,7 @@ public class TicketopenBizImpl implements ITicketopenBiz {
     }
 
     @Override
-    public List<Ticketopen> getBypage(PageHelper pageHelper) {
-        return todi.QueryByPage(pageHelper);
+    public List<Ticketopen> getBypage(PageHelper pageHelper,SqlHelper sqlHelper) {
+        return todi.QueryByPage(pageHelper,sqlHelper);
     }
 }
