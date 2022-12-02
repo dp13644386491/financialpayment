@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="assets/js/jquery-1.8.3.js"></script>
 <html>
 
 <head>
@@ -33,7 +35,20 @@
 			line-height: 40px;
 			margin-top: 20px;
 		}
+		#input1{
+			width: 100%;
+			height: 40px;
+			text-align: center;
+			border-radius: 6px;
+			background: #53d192;
+			border: none;
+			color: #fff;
+			font-size: 18px;
+			line-height: 40px;
+			margin-top: 20px;
+		}
 	</style>
+
 </head>
 
 <body data-type="login">
@@ -45,17 +60,18 @@
 				</div>
 			</div>
 			<div class="am-u-sm-10 login-am-center">
-				<form class="am-form">
+				<form class="am-form" action="asd" method="post">
 					<fieldset>
 						<div class="am-form-group">
-							<input type="email" class="" id="doc-ipt-email-1" placeholder="请输入账号">
+							<input type="email" class="" id="doc-ipt-email-1" placeholder="请输入账号" name="account">
 						</div>
 						<div class="am-form-group">
-							<input type="password" class="" id="doc-ipt-pwd-1" placeholder="请输入密码">
+							<input type="password" class="" id="doc-ipt-pwd-1" placeholder="请输入密码" name="password">
 						</div>
-						<a href="ticket-open.jsp" class="loginBtn">
-							<div>登 录</div>
-						</a>
+						<%--<a  class="loginBtn" >
+							<div>登入</div>
+						</a>--%>
+						<input type="submit" id="input1" value="登录">
 					</fieldset>
 				</form>
 			</div>
