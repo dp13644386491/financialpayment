@@ -1,20 +1,24 @@
 package com.jr.server;
 
+import com.jr.biz.impl.EnterpriseBizImpl;
 import com.jr.biz.impl.TicketopenBizImpl;
+import com.jr.entry.Enterprise;
 import com.jr.entry.Ticketopen;
 import com.jr.util.MD5Util;
 
 import javax.lang.model.element.NestingKind;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+@WebServlet("/mst")
 public class TicketOpenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +32,11 @@ public class TicketOpenServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        try {
+            insertTicketopencondition(request ,response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -58,7 +67,12 @@ public class TicketOpenServlet extends HttpServlet {
        response.setCharacterEncoding("UTF-8");
        response.setContentType("text/html;charset=UTF-8");
        String no=request.getParameter("no");
-       String enterPriseId=request.getParameter(" enterPriseId");
+       String enterPrisename=request.getParameter(" enterPrisename");
+       Enterprise enterprise1=new Enterprise();
+       enterprise1.setName(enterPrisename);
+       HttpSession session=request.getSession();
+       session.setAttribute("enter",enterprise1);
+       String enterpriseid= request.getParameter(String.valueOf( enterprise1.getId()));
        String acquirerEnterPriseId=request.getParameter("acquirerEnterPriseId");
        Double amount=Double.parseDouble(request.getParameter("amount"));
        int institutyId=Integer.parseInt(request.getParameter("institutyId"));
@@ -67,12 +81,11 @@ public class TicketOpenServlet extends HttpServlet {
        Date expiryTime=f1.parse(request.getParameter("expiryTime"));
        String paymentInterestType=request.getParameter("paymentInterestType");
        String ticketRemark=request.getParameter("ticketRemark");
-       TicketopenBizImpl ticketopenBiz=new TicketopenBizImpl();
        Ticketopen ticketopen1=new Ticketopen();
        SimpleDateFormat f=new SimpleDateFormat("yyyyMMddHHmmss");
         String date=f.format(new Date(System.currentTimeMillis()));
         ticketopen1.setNo("N"+date);
-        ticketopen1.setEnterPriseId(enterPriseId);
+        ticketopen1.setEnterPriseId(enterpriseid);
         ticketopen1.setNo(no);
         ticketopen1.setAcquirerEnterPriseId(acquirerEnterPriseId);
         ticketopen1.setAmount(amount);

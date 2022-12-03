@@ -1,6 +1,8 @@
 package com.jr.server;
 
+import com.jr.biz.impl.EnterpriseBizImpl;
 import com.jr.biz.impl.UserBizImpl;
+import com.jr.entry.Enterprise;
 import com.jr.entry.User;
 
 import javax.servlet.ServletException;
@@ -36,16 +38,24 @@ public class Userervlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String account = request.getParameter("account");
         String password =request.getParameter("password");
-        System.out.println(account+".........");
-        System.out.println(password+"........");
         UserBizImpl userBiz=new UserBizImpl();
         User user1=new User();
         user1.setAccount(account);
         user1.setPassword(password);
-        if(userBiz.login(user1)!=null){
-            request.getRequestDispatcher("ticket-open.jsp").forward(request ,response);
+        User user2=userBiz.login(user1);
+        Enterprise enterprise2=new Enterprise();
+        enterprise2.setId(Integer.parseInt(user2.getEnterPriseId()));
+        EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
+        Enterprise enterprise1=  enterpriseBiz1.getEnterpriseInfo(enterprise2);
+        System.out.println(user2+"..............");
+        if(  user2!=null){
+
             HttpSession session=request.getSession();
-            session.setAttribute("user",user1);
+            session.setAttribute("user",user2);
+            session.setAttribute("sss",enterprise1);
+
+            request.getRequestDispatcher("ticket-open.jsp").forward(request ,response);
+
         }else {
            response.getWriter().println("1134");
         }

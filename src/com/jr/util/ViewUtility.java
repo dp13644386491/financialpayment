@@ -63,14 +63,14 @@ public class ViewUtility {
                 '}';
     }
 
-    public static  ViewUtility sleectInfoView(String no) {
+    public ViewUtility sleectInfoView(String no) {
         ViewUtility viewUtility1 = null;
         Connection getconn=null;
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
         try {
              getconn = DBHelper.getConn();
-            String sql = "select * from infoview where  ticket_id=?";
+            String sql = "select * from infoview where  no=?";
             preparedStatement = getconn.prepareStatement(sql);
             preparedStatement.setString(1, no);
              resultSet = preparedStatement.executeQuery();

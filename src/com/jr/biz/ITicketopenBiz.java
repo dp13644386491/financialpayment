@@ -35,5 +35,5 @@ public interface ITicketopenBiz {
     /*
      * 分页根据页数查询方法
      * */
-    public List<Ticketopen> getBypage(PageHelper pageHelper);
+    public List<Ticketopen> getBypage(PageHelper pageHelper,SqlHelper sqlHelper);
 }

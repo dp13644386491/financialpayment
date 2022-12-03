@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 
 <head>
+    <script src="assets/js/jquery-1.8.3.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>财务支付管理系统</title>
@@ -14,6 +17,24 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $.get("eps",function (str) {
+                eval("var list="+str);
+                for(var i=0;i<list.length;i++){
+                    if (${sss.id}==list[i].id){
+                        continue;
+                    }
+                    var obj="<option value='"+list[i].id+"'>"+list[i].name+"</option>"
+                    $(obj).appendTo("[name='enterprisename']");
+                }
+            });
+        });
+
+
+
+
+    </script>
     <style>
         .star::before {
             content: '*';
@@ -32,12 +53,14 @@
     </style>
 </head>
 <body data-type="generalComponents">
+
 <header class="am-topbar am-topbar-inverse admin-header">
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
+
+                    <span class="tpl-header-list-user-nick">${user.name}</span><span class="tpl-header-list-user-ico"> <img
                         src="assets/img/user01.png"></span>
                 </a>
                 <ul class="am-dropdown-content">
@@ -116,11 +139,11 @@
                         <div class="am-g tpl-amazeui-form">
 
                             <div class="am-u-sm-12 am-u-md-6">
-                                <form class="am-form am-form-horizontal">
+                                <form class="am-form am-form-horizontal" method="post" action="mst">
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 开单企业</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <input disabled type="text" value="百度科技有限公司" id="user-name"
+                                            <input disabled type="text" value="${sss.name}" id="user-name"
                                                    placeholder="请输入开单企业">
                                         </div>
                                     </div>
@@ -131,7 +154,7 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <input disabled type="text" id="user-name" placeholder="请输入统一社会信用代码">
+                                            <input disabled type="text" id="user-name" value="${sss.socialUniformCcode}" placeholder="请输入统一社会信用代码">
                                         </div>
                                     </div>
                                 </form>
@@ -141,11 +164,11 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 收单企业</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <select data-am-selected>
+                                            <select data-am-selected name="enterprisename">
                                                 <option value="">请选择收单企业</option>
-                                                <option value="a">百度科技有限公司</option>
-                                                <option value="b">京东集团</option>
-                                                <option value="c">小米</option>
+<%--                                                <option value="a">百度科技有限公司</option>--%>
+<%--                                                <option value="b">京东集团</option>--%>
+<%--                                                <option value="c">小米</option>--%>
                                             </select>
                                         </div>
                                     </div>

@@ -15,4 +15,6 @@ public class UserBizImpl implements IUserBiz {
     public User login(User user) {
         return userDaolmpl.queryByAccountAndPassword(user);
     }
+
+
 }

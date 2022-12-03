@@ -11,5 +11,4 @@ public interface IUserDao {
      */
     public User queryByAccountAndPassword(User user);
 
-
 }

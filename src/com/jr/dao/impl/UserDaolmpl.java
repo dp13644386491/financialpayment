@@ -51,4 +51,5 @@ public class UserDaolmpl implements IUserDao {
         }
         return user1;
     }
+
 }
