@@ -18,10 +18,9 @@ public class ReviewdetailServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         String no=request.getParameter("no");
-        ViewUtility viewUtility=new ViewUtility();
-        ViewUtility viewUtility1=viewUtility.sleectInfoView(no);
+        ViewUtility viewUtility=ViewUtility.sleectInfoView(no);
         HttpSession session = request.getSession();
-        session.setAttribute("viewUtility",viewUtility1);
+        session.setAttribute("viewUtility",viewUtility);
         request.getRequestDispatcher("check-detail.jsp").forward(request,response);
 
     }

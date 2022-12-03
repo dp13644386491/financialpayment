@@ -3,6 +3,7 @@ package com.jr.biz;
 import com.jr.entry.Ticketopen;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
+import com.jr.util.ViewOpenEnterprise;
 
 import java.util.List;
 
@@ -35,5 +36,5 @@ public interface ITicketopenBiz {
     /*
      * 分页根据页数查询方法
      * */
-    public List<Ticketopen> getBypage(PageHelper pageHelper,SqlHelper sqlHelper);
+    public List<ViewOpenEnterprise> getBypage(PageHelper pageHelper, SqlHelper sqlHelper);
 }

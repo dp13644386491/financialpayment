@@ -7,6 +7,7 @@ import com.jr.entry.Reviewrecord;
 import com.jr.entry.Ticketopen;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
+import com.jr.util.ViewOpenEnterprise;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,7 +49,7 @@ public class ReviewrecordServlet extends HttpServlet {
         sqlHelper.setCreateTime(createTime);
         sqlHelper.setAmountMax(amountMax);
         sqlHelper.setAmountMin(amountMin);
-        PageHelper<Ticketopen> ph=new PageHelper<>();
+        PageHelper<ViewOpenEnterprise> ph=new PageHelper<>();
         ph.setTotalCount(ticketopenBiz.getAllnum(sqlHelper));
         ph.setPageSize(5);
         ph.getTotalPage();

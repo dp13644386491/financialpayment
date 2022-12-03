@@ -22,6 +22,111 @@ public class ViewUtility {
     private String paymentInterestItype;
     private String ticketRemark;
 
+
+    public String getTicket_id() {
+        return ticket_id;
+    }
+
+    public void setTicket_id(String ticket_id) {
+        this.ticket_id = ticket_id;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getOpenename() {
+        return openename;
+    }
+
+    public void setOpenename(String openename) {
+        this.openename = openename;
+    }
+
+    public String getOpenescu() {
+        return openescu;
+    }
+
+    public void setOpenescu(String openescu) {
+        this.openescu = openescu;
+    }
+
+    public String getReceiptename() {
+        return receiptename;
+    }
+
+    public void setReceiptename(String receiptename) {
+        this.receiptename = receiptename;
+    }
+
+    public String getReceiptescu() {
+        return receiptescu;
+    }
+
+    public void setReceiptescu(String receiptescu) {
+        this.receiptescu = receiptescu;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getInstitutyname() {
+        return institutyname;
+    }
+
+    public void setInstitutyname(String institutyname) {
+        this.institutyname = institutyname;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getExpriyTime() {
+        return expriyTime;
+    }
+
+    public void setExpriyTime(String expriyTime) {
+        this.expriyTime = expriyTime;
+    }
+
+    public String getPaymentInterestItype() {
+        return paymentInterestItype;
+    }
+
+    public void setPaymentInterestItype(String paymentInterestItype) {
+        this.paymentInterestItype = paymentInterestItype;
+    }
+
+    public String getTicketRemark() {
+        return ticketRemark;
+    }
+
+    public void setTicketRemark(String ticketRemark) {
+        this.ticketRemark = ticketRemark;
+    }
+
     public ViewUtility() {
     }
     public ViewUtility(String ticket_id, String no, String status,
@@ -63,7 +168,7 @@ public class ViewUtility {
                 '}';
     }
 
-    public ViewUtility sleectInfoView(String no) {
+    public static ViewUtility sleectInfoView(String no) {
         ViewUtility viewUtility1 = null;
         Connection getconn=null;
         PreparedStatement preparedStatement=null;
@@ -75,21 +180,34 @@ public class ViewUtility {
             preparedStatement.setString(1, no);
              resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                viewUtility1 = new ViewUtility(
-                        resultSet.getString("ticket_id"),
-                        resultSet.getString("no"),
-                        resultSet.getString("status"),
-                        resultSet.getString("openename"),
-                        resultSet.getString("openesuc"),
-                        resultSet.getString("receiptename"),
-                        resultSet.getString("receiptesuc"),
-                        resultSet.getString("amount"),
-                        resultSet.getString("institutyname"),
-                        resultSet.getString("create_time"),
-                        resultSet.getString("expiry_time"),
-                        resultSet.getString("payment_interest_type"),
-                        resultSet.getString("ticket_remark")
-                );
+                viewUtility1 = new ViewUtility();
+                viewUtility1.setTicket_id(resultSet.getString("ticket_id"));
+                viewUtility1.setNo(resultSet.getString("no"));
+                String status=resultSet.getString("status");
+                if(status.equals("A")){
+                    viewUtility1.setStatus("成功");
+                }else if(status.equals("B")){
+                    viewUtility1.setStatus("开单中");
+                }else if(status.equals("C")){
+                    viewUtility1.setStatus("已撤销");
+                }else if(status.equals("D")){
+                    viewUtility1.setStatus("复核未通过");
+                }
+                viewUtility1.setOpenename(resultSet.getString("openename"));
+                viewUtility1.setOpenescu(resultSet.getString("openesuc"));
+                viewUtility1.setReceiptename(resultSet.getString("receiptename"));
+                viewUtility1.setReceiptescu(resultSet.getString("receiptesuc"));
+                viewUtility1.setAmount(resultSet.getString("amount"));
+                viewUtility1.setInstitutyname(resultSet.getString("institutyname"));
+                viewUtility1.setCreateTime(resultSet.getString("create_time"));
+                viewUtility1.setExpriyTime(resultSet.getString("expiry_time"));
+                String pit = resultSet.getString("payment_interest_type");
+                if(pit.equals("A")){
+                    viewUtility1.setPaymentInterestItype("融资方付息");
+                }else if(pit.equals("B")){
+                    viewUtility1.setPaymentInterestItype("核心企业付息");
+                }
+                viewUtility1.setTicketRemark(resultSet.getString("ticket_remark"));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

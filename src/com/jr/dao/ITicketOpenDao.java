@@ -4,6 +4,7 @@ package com.jr.dao;
 import com.jr.entry.Ticketopen;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
+import com.jr.util.ViewOpenEnterprise;
 
 import java.util.List;
 
@@ -36,6 +37,6 @@ public interface ITicketOpenDao {
     /**
      * 查询分页信息集合
      */
-    public List<Ticketopen> QueryByPage(PageHelper pageHelper,SqlHelper sqlHelper);
+    public List<ViewOpenEnterprise> QueryByPage(PageHelper pageHelper, SqlHelper sqlHelper);
 
 }
