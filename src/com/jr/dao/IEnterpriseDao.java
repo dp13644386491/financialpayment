@@ -14,4 +14,9 @@ public interface IEnterpriseDao {
      *查询所有企业名称
      * */
     public List<Enterprise> queryAllEnterpriseNames();
+
+    /**
+     *根据企业名称查询企业id和社会统一代码
+     */
+    public Enterprise queryIdAndSocialUniformCodeByEnterpriseName(Enterprise enterprise);
 }

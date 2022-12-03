@@ -63,7 +63,7 @@
 				<form class="am-form" action="asd" method="post">
 					<fieldset>
 						<div class="am-form-group">
-							<input type="email" class="" id="doc-ipt-email-1" placeholder="请输入账号" name="account">
+							<input type="text" class="" id="doc-ipt-email-1" placeholder="请输入账号" name="account">
 						</div>
 						<div class="am-form-group">
 							<input type="password" class="" id="doc-ipt-pwd-1" placeholder="请输入密码" name="password">

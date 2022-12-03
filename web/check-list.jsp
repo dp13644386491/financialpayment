@@ -13,6 +13,62 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <script src="assets/js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //窗体内容加载后，加载开单表的分页数据
+            $.get("ms",function (str) {
+                //看见具体开单表值
+                eval("var pageHelper="+str);
+
+                for(var i=0;i<pageHelper.pageList.length;i++){
+                     alert(45);
+                    var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].acquirerEnterPriseId+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].enterPriseId+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].institutyId+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='check-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+                    $(obj).appendTo("[id='doc-modal-list']");
+
+                }
+                //看见分页序号超链接
+                for(var i=0;i<=pageHelper.totalPage;i++){
+                    var obj="<li><a value='"+i+"'>"+i+"</a></li>";
+                    $(obj).appendTo("[class='am-pagination tpl-pagination']");
+                }
+            });
+            //窗体加载完后，给分页超链接绑定一个点击事件
+            $(document).on("click","a",function(){
+                // 当a超链接点击的时候，向后台服务器发送ajax请求：
+                var val=$(this)[0].getAttribute("value");
+
+                $.get("ms","i=2&index="+val,function (str) {
+                    eval("var pageHelper="+str);
+                    //清空tr行
+                    $("tbody").empty();
+                    for(var i=0;i<pageHelper.pageList.length;i++){
+
+                        var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].acquirerEnterPriseId+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].enterPriseId+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].institutyId+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='check-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+                        $(obj).appendTo("tbody");
+
+                    }
+                })
+            });
+
+        });
+
+
+    </script>
 </head>
 <body data-type="generalComponents">
 <header class="am-topbar am-topbar-inverse admin-header">
@@ -158,7 +214,7 @@
                             </tr>
                             </thead>
                             <tbody id="doc-modal-list">
-                            <tr data-id="2">
+                            <%--<tr data-id="2">
                                 <td class="am-hide-sm-only">N20220328000001</td>
                                 <td class="am-hide-sm-only">腾讯科技有限公司</td>
                                 <td class="am-hide-sm-only">1,000,000.00</td>
@@ -253,7 +309,7 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>--%>
                             </tbody>
                         </table>
                         <div class="am-cf">
@@ -261,11 +317,11 @@
                             <div class="am-fr">
                                 <ul class="am-pagination tpl-pagination">
                                     <li class="am-disabled"><a href="#">«</a></li>
-                                    <li class="am-active"><a href="#">1</a></li>
+                                    <%--<li class="am-active"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">3</a></li>
                                     <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">5</a></li>--%>
                                     <li><a href="#">»</a></li>
                                 </ul>
                             </div>

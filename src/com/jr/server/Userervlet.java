@@ -36,6 +36,8 @@ public class Userervlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String account = request.getParameter("account");
         String password =request.getParameter("password");
+        System.out.println(account+".........");
+        System.out.println(password+"........");
         UserBizImpl userBiz=new UserBizImpl();
         User user1=new User();
         user1.setAccount(account);

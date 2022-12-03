@@ -8,9 +8,6 @@ import java.sql.SQLException;
 
 public class ViewUtility {
 
-    public static void main(String[] args) {
-        System.out.println(ViewUtility.sleectInfoView("2"));
-    }
     private String ticket_id;
     private String no;
     private String status;
@@ -72,7 +69,7 @@ public class ViewUtility {
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
         try {
-             getconn = DBHelper.getconn();
+             getconn = DBHelper.getConn();
             String sql = "select * from infoview where  ticket_id=?";
             preparedStatement = getconn.prepareStatement(sql);
             preparedStatement.setString(1, no);

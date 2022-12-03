@@ -24,7 +24,7 @@ public class UserDaolmpl implements IUserDao {
     public User queryByAccountAndPassword(User user) {
         try {
             String sql="select *  from  user where account=? and password=?";
-            con= DBHelper.getconn();
+            con= DBHelper.getConn();
             ps=con.prepareStatement(sql);
            ps.setString(1,user.getAccount());
            ps.setString(2,user.getPassword());
