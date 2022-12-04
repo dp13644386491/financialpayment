@@ -1,8 +1,11 @@
 package com.jr.server;
 
+import com.google.gson.Gson;
 import com.jr.biz.impl.EnterpriseBizImpl;
+import com.jr.biz.impl.InstitutyBizImpl;
 import com.jr.biz.impl.TicketopenBizImpl;
 import com.jr.entry.Enterprise;
+import com.jr.entry.Instituty;
 import com.jr.entry.Ticketopen;
 import com.jr.util.MD5Util;
 
@@ -25,6 +28,14 @@ public class TicketOpenServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        String name=request.getParameter("acquirerEnterPrisename");
+        System.out.println(name);
+        Enterprise enterprise2=new Enterprise();
+        enterprise2.setName(name);
+        EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
+        Enterprise enterprise1=enterpriseBiz1.queryIdAndSocialUniformCodeByEnterpriseName(enterprise2);
+        Gson gson=new Gson();
+        response.getWriter().println(gson.toJson(enterprise1));
     }
 
     @Override
@@ -62,40 +73,60 @@ public class TicketOpenServlet extends HttpServlet {
     /**
      * 添加开单表信息
      */
-   protected  void  insertTicketopencondition(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ParseException {
+   protected  void  insertTicketopencondition(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException, ServletException {
        request.setCharacterEncoding("UTF-8");
        response.setCharacterEncoding("UTF-8");
        response.setContentType("text/html;charset=UTF-8");
-       String no=request.getParameter("no");
-       String enterPrisename=request.getParameter(" enterPrisename");
+       String enterPrisename=request.getParameter("enterPrisename");
+       System.out.println(enterPrisename);
        Enterprise enterprise1=new Enterprise();
        enterprise1.setName(enterPrisename);
-       HttpSession session=request.getSession();
-       session.setAttribute("enter",enterprise1);
-       String enterpriseid= request.getParameter(String.valueOf( enterprise1.getId()));
-       String acquirerEnterPriseId=request.getParameter("acquirerEnterPriseId");
+       System.out.println(enterprise1);
+       EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
+       Enterprise enterprise2=enterpriseBiz1.queryIdAndSocialUniformCodeByEnterpriseName(enterprise1);
+       System.out.println(enterprise2.getId());
+       String acquirerEnterPrisename=request.getParameter("acquirerEnterPrisename");
+       Enterprise enterprise3=new Enterprise();
+       enterprise3.setName(acquirerEnterPrisename);
+       Enterprise enterprise4=enterpriseBiz1.queryIdAndSocialUniformCodeByEnterpriseName(enterprise3);
+       System.out.println(enterprise4.getId());
        Double amount=Double.parseDouble(request.getParameter("amount"));
-       int institutyId=Integer.parseInt(request.getParameter("institutyId"));
-       SimpleDateFormat f1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       String institutyname=request.getParameter("institutyname");
+       Instituty instituty1=new Instituty();
+       instituty1.setName(institutyname);
+       InstitutyBizImpl institutyBiz1=new InstitutyBizImpl();
+       Instituty instituty2=institutyBiz1.quaryIdByname(instituty1);
+       System.out.println(instituty2.getId());
+       SimpleDateFormat f1=new SimpleDateFormat("yyyy-MM-dd");
        Date createTime= f1.parse(request.getParameter("createTime"));
        Date expiryTime=f1.parse(request.getParameter("expiryTime"));
        String paymentInterestType=request.getParameter("paymentInterestType");
        String ticketRemark=request.getParameter("ticketRemark");
+       System.out.println(ticketRemark+".........");
        Ticketopen ticketopen1=new Ticketopen();
        SimpleDateFormat f=new SimpleDateFormat("yyyyMMddHHmmss");
         String date=f.format(new Date(System.currentTimeMillis()));
         ticketopen1.setNo("N"+date);
-        ticketopen1.setEnterPriseId(enterpriseid);
-        ticketopen1.setNo(no);
-        ticketopen1.setAcquirerEnterPriseId(acquirerEnterPriseId);
+        ticketopen1.setEnterPriseId(String.valueOf(enterprise2.getId()));
+        ticketopen1.setAcquirerEnterPriseId(String.valueOf(enterprise4.getId()));
         ticketopen1.setAmount(amount);
-        ticketopen1.setInstitutyId(institutyId);
+        ticketopen1.setInstitutyId(instituty2.getId());
         ticketopen1.setCreateTime(createTime);
         ticketopen1.setExpiryTime(expiryTime);
-        ticketopen1.setPaymentInterestType(paymentInterestType);
+        if(paymentInterestType.equals("融资方付息")){
+            ticketopen1.setPaymentInterestType("A");
+        }else {
+            ticketopen1.setPaymentInterestType("B");
+        }
         ticketopen1.setStatus("B");
         String uplinkAddress= MD5Util.getInstance().toHashHexStr("N"+date);
         ticketopen1.setUplinkAddress(uplinkAddress.substring(0,16));
+
         ticketopen1.setTicketRemark(ticketRemark);
+        TicketopenBizImpl tt=new TicketopenBizImpl();
+       int i=tt.addTicket(ticketopen1);
+       Gson gson=new Gson();
+       response.getWriter().println(gson.toJson(i));
+
    }
 }

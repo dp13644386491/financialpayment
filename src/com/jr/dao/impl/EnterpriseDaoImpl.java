@@ -77,41 +77,21 @@ public class EnterpriseDaoImpl implements IEnterpriseDao {
         }
         return list;
     }
-
+//根据企业名去查寻id和社会信用码
     @Override
     public Enterprise queryIdAndSocialUniformCodeByEnterpriseName(Enterprise enterprise) {
+        Enterprise enterprise1=null;
         try {
             con = DBHelper.getConn();
             String sql = "SELECT id,social_uniform_code FROM enterprise where name =?";
             ps = con.prepareStatement(sql);
             ps.setString(1,enterprise.getName());
             rs = ps.executeQuery();
-            while(rs.next()){
+            if (rs.next()){
+                   enterprise1=new Enterprise();
 
-                enterprise.setId(rs.getInt(1));
-                enterprise.setSocialUniformCcode(rs.getString(2));
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return enterprise1;
-    }
-
-    @Override
-    public Enterprise querydeletone(Enterprise enterprise) {
-        try {
-            con = DBHelper.getConn();
-            String sql = "SELECT name  FROM enterprise ";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-
-                enterprise1.setName(rs.getString(1));
+                enterprise1.setId(rs.getInt(1));
+                enterprise1.setSocialUniformCcode(rs.getString(2));
 
             }
         } catch (IOException e) {
@@ -123,4 +103,8 @@ public class EnterpriseDaoImpl implements IEnterpriseDao {
         }
         return enterprise1;
     }
+
+
+
+
 }

@@ -16,6 +16,6 @@ public interface IEnterpriseBiz {
     public List<Enterprise> getAllEnterpriseNames();
     //通过企业名称，获取企业id和企业社会信用代码
     public  Enterprise queryIdAndSocialUniformCodeByEnterpriseName(Enterprise enterprise);
-    //查询去掉开单企业，查询剩下的所有企业
-    public   Enterprise querydeletone(Enterprise enterprise);
+
+
 }

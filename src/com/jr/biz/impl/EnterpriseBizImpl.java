@@ -29,8 +29,9 @@ public class EnterpriseBizImpl implements IEnterpriseBiz {
         return edi.queryIdAndSocialUniformCodeByEnterpriseName(enterprise);
     }
 
-    @Override
-    public Enterprise querydeletone(Enterprise enterprise) {
-        return edi.querydeletone(enterprise);
-    }
+
+
+
+
+
 }

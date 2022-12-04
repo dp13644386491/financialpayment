@@ -1,3 +1,4 @@
+<%@ page import="com.jr.util.ViewUtility" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <html>
@@ -15,6 +16,25 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <script type="text/javascript">
+
+        function show() {
+            var boo=window.confirm("确定驳回吗？");
+            if(boo){
+                if(document.getElementById("user-intro").innerText==""){
+                    alert("备注未填写，请重新复核");
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        
+        function show1() {
+            var boo=window.confirm("确定复核通过吗？");
+            return boo;
+        }
+    </script>
 </head>
 
 <body data-type="generalComponents">
@@ -102,7 +122,10 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证编号</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    ${viewUtility.no}
+                                    <%
+                                        ViewUtility vt= (ViewUtility)session.getAttribute("viewUtility");
+                                    %>
+                                    <%=vt.getNo()%>
                                 </div>
                             </div>
                         </form>
@@ -249,8 +272,8 @@
                     </div>
                 </div>
                 <div style="text-align: center;margin-top:40px">
-                    <a class="am-btn am-btn-default" href="check-list.jsp">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
-                    <a class="am-btn am-btn-primary" href="check-list.jsp" style="margin-left:20px">复核通过</a>
+                    <a class="am-btn am-btn-default" href="check-list.jsp" onclick="return show();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
+                    <a class="am-btn am-btn-primary" href="check-list.jsp" style="margin-left:20px" onclick="return show1();">复核通过</a>
                 </div>
             </div>
         </div>
@@ -260,9 +283,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
-<script>
 
-</script>
 </body>
 
 </html>

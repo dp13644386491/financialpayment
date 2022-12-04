@@ -23,10 +23,10 @@
 
                 for(var i=0;i<pageHelper.pageList.length;i++){
                     var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
-                        pageHelper.pageList[i].acquirerEnterPriseId+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
-                        pageHelper.pageList[i].enterPriseId+"</td><td class='am-hide-sm-only'>"+
-                        pageHelper.pageList[i].institutyId+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
+                        pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
                         pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='rds?no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
@@ -35,7 +35,7 @@
 
                 //看见分页序号超链接
                 for(var i=1;i<=pageHelper.totalPage;i++){
-                    var obj="<li><a value='"+i+"'>"+i+"</a></li>";
+                    var obj="<li class='am-active'><a value='"+i+"'>"+i+"</a></li>";
                     $(obj).appendTo("[class='am-disabled']");
                 }
             });
@@ -51,10 +51,10 @@
                     for(var i=0;i<pageHelper.pageList.length;i++){
 
                         var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].acquirerEnterPriseId+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].enterPriseId+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].institutyId+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";

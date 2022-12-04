@@ -6,7 +6,9 @@ import com.jr.entry.Ticketopen;
 import com.jr.util.DBHelper;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
+import com.jr.util.ViewOpenEnterprise;
 
+import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,7 +73,7 @@ public class TicketopenBizImpl implements ITicketopenBiz {
     }
 
     @Override
-    public List<Ticketopen> getBypage(PageHelper pageHelper,SqlHelper sqlHelper) {
+    public List<ViewOpenEnterprise> getBypage(PageHelper pageHelper, SqlHelper sqlHelper) {
         return todi.QueryByPage(pageHelper,sqlHelper);
     }
 }
