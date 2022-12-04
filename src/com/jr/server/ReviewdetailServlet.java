@@ -21,6 +21,7 @@ public class ReviewdetailServlet extends HttpServlet {
         ViewUtility viewUtility=ViewUtility.sleectInfoView(no);
         HttpSession session = request.getSession();
         session.setAttribute("viewUtility",viewUtility);
+        System.out.println(viewUtility);
         request.getRequestDispatcher("check-detail.jsp").forward(request,response);
 
     }

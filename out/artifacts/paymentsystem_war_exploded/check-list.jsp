@@ -16,8 +16,65 @@
     <script src="assets/js/jquery-1.8.3.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            //窗体内容加载后，加载开单表的分页数据
             $.get("ms",function (str) {
+                method(str);
+            });
+            //窗体加载完，加载公司名称
+            $.get("eps",function (str) {
+                eval("var list="+str);
+                for(var i=0;i<list.length;i++){
+                    var obj="<option value='"+list[i].id+"'>"+list[i].name+"</option>"
+                    $(obj).appendTo("[name='enterprisename']");
+                }
+            });
+
+            $("[id='openticketenterid']").change(function () {
+                submitvalues()
+            });
+
+            $("[id='checkenterpriseid']").change(function () {
+                submitvalues()
+            });
+            $("[id='certificate-number-no']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+            $("[id='select-date']").blur(function () {       //文本框失去焦点后
+                alert($(this).val())
+                submitvalues()
+            });
+            $("[id='amountMin']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+            $("[id='amountMax']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+
+        });
+
+        function submitvalues() {
+            var no = $("[id='certificate-number-no']").val();
+            var cid = $("[id='checkenterpriseid']").val();
+            var oid = $("[id='openticketenterid']").val();
+            var sdate = $("[id='select-date']").val();
+            var amountMin = $("[id='amountMin']").val();
+            var amountMax = $("[id='amountMax']").val();
+            $.get("ms","i=2&no=" + no +
+                "&enterPriseId=" + oid +
+                "&acquirerEnterPriseId=" + cid +
+                "&createtime=" + sdate +
+                "&amountMax=" + amountMax +
+                "&amountMin=" + amountMin, function (str) {
+                //收单企业下拉框
+                // /*将字符串转成对象格式*/
+                method(str);
+            });
+        }
+
+        function method(str) {
+            $("[id='doc-modal-list']").empty();
+            $("[id='page']").empty();
+
+            //窗体内容加载后，加载开单表的分页数据
                 //看见具体开单表值
                 eval("var pageHelper="+str);
 
@@ -35,10 +92,10 @@
 
                 //看见分页序号超链接
                 for(var i=1;i<=pageHelper.totalPage;i++){
-                    var obj="<li class='am-active'><a value='"+i+"'>"+i+"</a></li>";
+                    var obj="<li id='page' class='am-active'><a value='"+i+"'>"+i+"</a></li>";
                     $(obj).appendTo("[class='am-disabled']");
                 }
-            });
+
             //窗体加载完后，给分页超链接绑定一个点击事件
             $(document).on("click","a",function(){
                 // 当a超链接点击的时候，向后台服务器发送ajax请求：
@@ -63,16 +120,7 @@
                     }
                 })
             });
-
-            //窗体加载完，加载公司名称
-            $.get("eps",function (str) {
-                eval("var list="+str);
-                for(var i=0;i<list.length;i++){
-                    var obj="<option value='"+list[i].id+"'>"+list[i].name+"</option>"
-                    $(obj).appendTo("[name='enterprisename']");
-                }
-            });
-        });
+        }
 
 
     </script>
@@ -150,15 +198,16 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">凭证编号</span>
                                 </span>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;请输入凭证编号"
+                            <input type="text" id="certificate-number-no" class="am-form-field" placeholder="&nbsp;&nbsp;请输入凭证编号"
                                    style="border: 1px solid #c2cad8;width: 77%;border-radius: 3px;">
                         </div>
                     </div>
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">收单企业</span>
-                            <select name="enterprisename" class="am-form-field" data-am-selected="{btnSize: 'sm'}">
+                            <select name="enterprisename" id="checkenterpriseid" class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择收单企业</option>
+                                <option value="null">无</option>
                                 <%--<option value="a">百度科技有限公司</option>
                                 <option value="b">京东集团</option>
                                 <option value="c">小米</option>--%>
@@ -168,8 +217,9 @@
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">开单企业</span>
-                            <select name="enterprisename" class="am-form-field" data-am-selected="{btnSize: 'sm'}">
+                            <select name="enterprisename" id='openticketenterid' class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择开单企业</option>
+                                <option value="null">无</option>
                                 <%--<option value="a">腾讯科技有限公司</option>
                                 <option value="b">隆基股份有限公司</option>--%>
                             </select>
@@ -180,7 +230,7 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">开单日期</span>
                                 </span>
-                            <input type="text" class="am-form-field" data-am-datepicker
+                            <input type="text" id="select-date" class="am-form-field" data-am-datepicker
                                    placeholder="&nbsp;&nbsp;请选择日期"
                                    style="border: 1px solid #c2cad8;width: 68%;border-radius: 3px;">
                         </div>
@@ -192,12 +242,12 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">凭证金额</span>
                                 </span>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最低金额(万)"
+                            <input type="text" id="amountMin" class="am-form-field" placeholder="&nbsp;&nbsp;最低金额(万)"
                                    style="border: 1px solid #c2cad8;width: 23%;border-radius: 3px;">
                             <div class="am-form-field"
                                  style="width: 0%; border-radius: 3px;border: none;margin-left: 10px;">~
                             </div>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最高金额(万)"
+                            <input type="text" id="amountMax" class="am-form-field" placeholder="&nbsp;&nbsp;最高金额(万)"
                                    style="border: 1px solid #c2cad8;width: 23%;border-radius: 3px;margin-left: 20px;">
                         </div>
                     </div>
@@ -344,8 +394,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
-<script>
-</script>
+
 </body>
 
 </html>

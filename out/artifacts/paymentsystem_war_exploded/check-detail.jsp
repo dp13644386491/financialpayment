@@ -21,7 +21,9 @@
         function show() {
             var boo=window.confirm("确定驳回吗？");
             if(boo){
-                if(document.getElementById("user-intro").innerText==""){
+
+               var val= $("[name='txtarea']").val();
+                if(val.length==0){
                     alert("备注未填写，请重新复核");
                     return false;
                 }
@@ -122,10 +124,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证编号</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    <%
-                                        ViewUtility vt= (ViewUtility)session.getAttribute("viewUtility");
-                                    %>
-                                    <%=vt.getNo()%>
+                                    ${viewUtility.no}
                                 </div>
                             </div>
                         </form>
@@ -264,7 +263,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">备注</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    <textarea class="" rows="4" id="user-intro" placeholder="驳回必填"></textarea>
+                                    <textarea class="" rows="4" id="user-intro" placeholder="驳回必填" name="txtarea"></textarea>
 
                                 </div>
                             </div>

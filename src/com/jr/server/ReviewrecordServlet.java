@@ -28,8 +28,15 @@ public class ReviewrecordServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-        page(request,response);
-
+        String num=request.getParameter("i");
+        if(num==null){
+            page(request,response);
+        }else{
+            int i = Integer.parseInt(num);
+            if(i==2){
+                page(request, response);
+            }
+        }
     }
 
     protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -54,6 +61,7 @@ public class ReviewrecordServlet extends HttpServlet {
         ph.setPageSize(5);
         ph.getTotalPage();
 
+        String num = request.getParameter("i");
         String str=request.getParameter("index");
         if(str==null){
             ph.setIndexPage(1);

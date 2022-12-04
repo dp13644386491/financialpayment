@@ -6,20 +6,21 @@ public class ViewOpenEnterprise {
     private String no;//凭证编号
     private String enterPriseId;//开单企业id
     private String acquirerEnterPriseId;//收单企业id
-    private double amount;//凭证金额
-    private int institutyId;//金融机构主键id
-    private Date createTime;//开单日期
-    private Date expiryTime;//到期日期
+    private String amount;//凭证金额
+    private String institutyId;//金融机构主键id
+    private String createTime;//开单日期
+    private String expiryTime;//到期日期
     private String status;//票据状态
     private String uplinkAddress;//上链地址
     private String enterPriseName;//开单企业名称
     private String acquirerEnterPriseName;//收单企业名称
     private String institutyName;//金融机构名称
 
+
     public ViewOpenEnterprise() {
     }
 
-    public ViewOpenEnterprise(String no, String enterPriseId, String acquirerEnterPriseId, double amount, int institutyId, Date createTime, Date expiryTime, String status, String uplinkAddress, String enterPriseName, String acquirerEnterPriseName, String institutyName) {
+    public ViewOpenEnterprise(String no, String enterPriseId, String acquirerEnterPriseId, String amount, String institutyId, String createTime, String expiryTime, String status, String uplinkAddress, String enterPriseName, String acquirerEnterPriseName, String institutyName) {
         this.no = no;
         this.enterPriseId = enterPriseId;
         this.acquirerEnterPriseId = acquirerEnterPriseId;
@@ -58,35 +59,35 @@ public class ViewOpenEnterprise {
         this.acquirerEnterPriseId = acquirerEnterPriseId;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
-    public int getInstitutyId() {
+    public String getInstitutyId() {
         return institutyId;
     }
 
-    public void setInstitutyId(int institutyId) {
+    public void setInstitutyId(String institutyId) {
         this.institutyId = institutyId;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getExpiryTime() {
+    public String getExpiryTime() {
         return expiryTime;
     }
 
-    public void setExpiryTime(Date expiryTime) {
+    public void setExpiryTime(String expiryTime) {
         this.expiryTime = expiryTime;
     }
 
