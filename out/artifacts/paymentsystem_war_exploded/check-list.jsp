@@ -39,7 +39,6 @@
                 submitvalues()
             });
             $("[id='select-date']").blur(function () {       //文本框失去焦点后
-                alert($(this).val())
                 submitvalues()
             });
             $("[id='amountMin']").blur(function () {       //文本框失去焦点后
@@ -208,9 +207,6 @@
                             <select name="enterprisename" id="checkenterpriseid" class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择收单企业</option>
                                 <option value="null">无</option>
-                                <%--<option value="a">百度科技有限公司</option>
-                                <option value="b">京东集团</option>
-                                <option value="c">小米</option>--%>
                             </select>
                         </div>
                     </div>
@@ -220,8 +216,6 @@
                             <select name="enterprisename" id='openticketenterid' class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择开单企业</option>
                                 <option value="null">无</option>
-                                <%--<option value="a">腾讯科技有限公司</option>
-                                <option value="b">隆基股份有限公司</option>--%>
                             </select>
                         </div>
                     </div>
