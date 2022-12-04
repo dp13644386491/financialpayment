@@ -123,6 +123,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
             con=DBHelper.getConn();
             /*String sql="select * from ticket_open WHERE status='B'" + sqlHelper.sqlConcat()+" limit ?,?";*/
             String sql="select * from v_open_enterpise WHERE status='B'" + sqlHelper.sqlConcat()+" limit ?,?";
+            System.out.println(sql);
             ps=con.prepareStatement(sql);
             ps.setInt(1,pageHelper.getStartNum());
             ps.setInt(2,pageHelper.getPageSize());
@@ -141,11 +142,11 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
                 ViewOpenEnterprise viewOpenEnterprise = new ViewOpenEnterprise();
                 viewOpenEnterprise.setNo(rs.getString("no"));
                 viewOpenEnterprise.setAcquirerEnterPriseId(rs.getString("acquirer_enterprise_id"));
-                viewOpenEnterprise.setAmount(rs.getDouble("amount"));
+                viewOpenEnterprise.setAmount(rs.getString("amount"));
                 viewOpenEnterprise.setEnterPriseId(rs.getString("enterprise_id"));
-                viewOpenEnterprise.setInstitutyId(rs.getInt("instituty_id"));
-                viewOpenEnterprise.setCreateTime(rs.getDate("create_time"));
-                viewOpenEnterprise.setExpiryTime(rs.getDate("expiry_time"));
+                viewOpenEnterprise.setInstitutyId(rs.getString("instituty_id"));
+                viewOpenEnterprise.setCreateTime(rs.getString("create_time"));
+                viewOpenEnterprise.setExpiryTime(rs.getString("expiry_time"));
                 viewOpenEnterprise.setUplinkAddress(rs.getString("uplink_address"));
                 viewOpenEnterprise.setEnterPriseName(rs.getString("enterprise_name"));
                 viewOpenEnterprise.setAcquirerEnterPriseName(rs.getString("acquirer_enterprise_name"));

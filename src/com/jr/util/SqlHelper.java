@@ -1,5 +1,7 @@
 package com.jr.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SqlHelper {
@@ -33,8 +35,12 @@ public class SqlHelper {
         this.amountMax = amountMax;
         this.amountMin = amountMin;
     }
+    DateFormat df=new SimpleDateFormat();
     public String sqlConcat(){
-        return (no==null||no==""?"":" AND no="+no)+(acquirerEnterPriseId==null||acquirerEnterPriseId==""?"":" AND acquirer_enterprise_id="+acquirerEnterPriseId)+
+        if(createTime!=null){
+
+        }
+        return (no==null||no==""?"":(" AND no LIKE '%"+this.no+"%'"))+(acquirerEnterPriseId==null||acquirerEnterPriseId==""?"":" AND acquirer_enterprise_id="+acquirerEnterPriseId)+
                 (enterPriseId==null||enterPriseId==""?"":" AND enterprise_id="+enterPriseId)+(createTime==null||createTime==""?"":" AND create_time="+createTime)+
                 (status==null||status==""?"":" AND status="+status)+(amountMax==null||amountMax==""?"":" AND amount<="+amountMax)+
                 (amountMin==null||amountMin==""?"":" AND amount>="+amountMin);
