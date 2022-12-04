@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/app.css">
     <script type="text/javascript"  src="assets/js/jquery-1.8.3.js"></script>
     <script type="text/javascript">
+        //窗体加载将后端查到的公司传到前端，并拼接到收单公司的下拉列表后
         $(document).ready(function (){
 
             $.get("eps",function (str) {
@@ -333,7 +334,7 @@
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
-    // 提交按钮
+    // 提交按钮，获取form表单里的值传给后端
     $(function () {
 
         $('#submitBtn').on('click',function () {
@@ -352,8 +353,9 @@
                     "&createTime="+val4+
                     "&expiryTime="+val5+
                     "&paymentInterestType="+val6+
-                    "&ticketRemark="+val7,function (str) {
-
+                    "&ticketRemark="+val7+
+                "&userid="+${user.id},function (str) {
+           //进行判断，如果返回值不为空，提交成功
                 if(str==1){
                     $('#showDiv').hide();
                     $('#resultDiv').show();

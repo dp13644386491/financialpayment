@@ -76,4 +76,9 @@ public class TicketopenBizImpl implements ITicketopenBiz {
     public List<ViewOpenEnterprise> getBypage(PageHelper pageHelper, SqlHelper sqlHelper) {
         return todi.QueryByPage(pageHelper,sqlHelper);
     }
+
+    @Override
+    public Ticketopen quaryIdByNo(Ticketopen ticketopen) {
+        return todi.quaryIdByNo(ticketopen);
+    }
 }

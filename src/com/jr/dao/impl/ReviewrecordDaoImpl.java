@@ -19,8 +19,8 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
      * */
     @Override
     public int insertReviewrecord(Reviewrecord reviewrecord) {
-
-        return 0;
+      String sql="insert into review_record values(null,?,?,?,?,null)";
+        return upd(sql,reviewrecord.getTicketOpenId(),reviewrecord.getCreatorId(),reviewrecord.getCreateTime(),reviewrecord.getReviewStatus());
     }
 
     /*
@@ -47,5 +47,30 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
             e.printStackTrace();
         }
         return reviewrecord;
+    }
+    /**
+     *增删改通用方法
+     */
+    public int upd(String sql, Object... objs) {
+
+        int num = 0;
+        try {
+            con = DBHelper.getConn();
+            ps = con.prepareStatement(sql);
+            for (int i = 0; i < objs.length; i++) {
+                ps.setObject(i + 1, objs[i]);
+            }
+            num = ps.executeUpdate();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBHelper.closeAll(rs, ps, con);
+        }
+        return num;
     }
 }

@@ -47,7 +47,7 @@ public class InstitutyDaoImpl implements IInstitutyDao {
         }
         return list;
     }
-
+ //t通过金融机构的名字查询id
     @Override
     public Instituty quaryIdByname(Instituty instituty) {
         Instituty instituty1=null;

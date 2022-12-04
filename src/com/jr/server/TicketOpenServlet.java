@@ -3,9 +3,11 @@ package com.jr.server;
 import com.google.gson.Gson;
 import com.jr.biz.impl.EnterpriseBizImpl;
 import com.jr.biz.impl.InstitutyBizImpl;
+import com.jr.biz.impl.ReviewrecordBizImpl;
 import com.jr.biz.impl.TicketopenBizImpl;
 import com.jr.entry.Enterprise;
 import com.jr.entry.Instituty;
+import com.jr.entry.Reviewrecord;
 import com.jr.entry.Ticketopen;
 import com.jr.util.MD5Util;
 
@@ -77,33 +79,32 @@ public class TicketOpenServlet extends HttpServlet {
        request.setCharacterEncoding("UTF-8");
        response.setCharacterEncoding("UTF-8");
        response.setContentType("text/html;charset=UTF-8");
+       /*
+       获取前端页面传过来的值
+        */
        String enterPrisename=request.getParameter("enterPrisename");
-       System.out.println(enterPrisename);
        Enterprise enterprise1=new Enterprise();
        enterprise1.setName(enterPrisename);
-       System.out.println(enterprise1);
        EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
+       //将前端传过来的值转成id存进数据库
        Enterprise enterprise2=enterpriseBiz1.queryIdAndSocialUniformCodeByEnterpriseName(enterprise1);
-       System.out.println(enterprise2.getId());
        String acquirerEnterPrisename=request.getParameter("acquirerEnterPrisename");
        Enterprise enterprise3=new Enterprise();
        enterprise3.setName(acquirerEnterPrisename);
        Enterprise enterprise4=enterpriseBiz1.queryIdAndSocialUniformCodeByEnterpriseName(enterprise3);
-       System.out.println(enterprise4.getId());
        Double amount=Double.parseDouble(request.getParameter("amount"));
        String institutyname=request.getParameter("institutyname");
        Instituty instituty1=new Instituty();
        instituty1.setName(institutyname);
        InstitutyBizImpl institutyBiz1=new InstitutyBizImpl();
        Instituty instituty2=institutyBiz1.quaryIdByname(instituty1);
-       System.out.println(instituty2.getId());
        SimpleDateFormat f1=new SimpleDateFormat("yyyy-MM-dd");
        Date createTime= f1.parse(request.getParameter("createTime"));
        Date expiryTime=f1.parse(request.getParameter("expiryTime"));
        String paymentInterestType=request.getParameter("paymentInterestType");
        String ticketRemark=request.getParameter("ticketRemark");
-       System.out.println(ticketRemark+".........");
        Ticketopen ticketopen1=new Ticketopen();
+       //自动生成凭证编号和将所有值存进数据库
        SimpleDateFormat f=new SimpleDateFormat("yyyyMMddHHmmss");
         String date=f.format(new Date(System.currentTimeMillis()));
         ticketopen1.setNo("N"+date);
@@ -125,6 +126,29 @@ public class TicketOpenServlet extends HttpServlet {
         ticketopen1.setTicketRemark(ticketRemark);
         TicketopenBizImpl tt=new TicketopenBizImpl();
        int i=tt.addTicket(ticketopen1);
+       if (i!=0){
+          Ticketopen ticketopen3=new Ticketopen();
+          ticketopen3.setNo(ticketopen1.getNo());
+          TicketopenBizImpl ticketopenBiz3=new TicketopenBizImpl();
+          Ticketopen ticketopen4=ticketopenBiz3.quaryIdByNo(ticketopen3);
+           int userid=Integer.parseInt(request.getParameter("userid"));
+           Reviewrecord reviewrecord1=new Reviewrecord();
+           reviewrecord1.setTicketOpenId(ticketopen4.getId());
+           reviewrecord1.setCreatorId(userid);
+           reviewrecord1.setReviewStatus("A");
+           reviewrecord1.setCreateTime(createTime);
+           ReviewrecordBizImpl reviewrecordBiz1=new ReviewrecordBizImpl();
+           int i1=reviewrecordBiz1.addReviewrecord(reviewrecord1);
+           if (i1==1){
+               System.out.println("添加成功");
+           }else {
+               System.out.println("添加失败");
+           }
+
+
+
+       }
+
        Gson gson=new Gson();
        response.getWriter().println(gson.toJson(i));
 

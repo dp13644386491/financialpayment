@@ -2,6 +2,7 @@ package com.jr.dao;
 
 
 import com.jr.entry.Ticketopen;
+import com.jr.entry.User;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
 import com.jr.util.ViewOpenEnterprise;
@@ -38,5 +39,8 @@ public interface ITicketOpenDao {
      * 查询分页信息集合
      */
     public List<ViewOpenEnterprise> QueryByPage(PageHelper pageHelper, SqlHelper sqlHelper);
-
+    /*
+   根据凭证编号查开单id
+    */
+    public Ticketopen quaryIdByNo(Ticketopen ticketopen);
 }

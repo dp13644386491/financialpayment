@@ -30,7 +30,7 @@ public class Userervlet extends HttpServlet {
     }
 
     /**
-     * 使用sesson存储用户登录后返回的对象
+     * 使用sesson存储用户登录后返回的对象，实现登入功能
      * */
     protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -49,15 +49,13 @@ public class Userervlet extends HttpServlet {
         Enterprise enterprise1=  enterpriseBiz1.getEnterpriseInfo(enterprise2);
         System.out.println(user2+"..............");
         if(  user2!=null){
-
             HttpSession session=request.getSession();
             session.setAttribute("user",user2);
             session.setAttribute("sss",enterprise1);
-
             request.getRequestDispatcher("ticket-open.jsp").forward(request ,response);
 
         }else {
-           response.getWriter().println("1134");
+           response.sendRedirect("login.jsp");
         }
     }
 }

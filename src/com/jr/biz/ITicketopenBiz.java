@@ -1,6 +1,7 @@
 package com.jr.biz;
 
 import com.jr.entry.Ticketopen;
+import com.jr.entry.User;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
 import com.jr.util.ViewOpenEnterprise;
@@ -37,4 +38,8 @@ public interface ITicketopenBiz {
      * 分页根据页数查询方法
      * */
     public List<ViewOpenEnterprise> getBypage(PageHelper pageHelper, SqlHelper sqlHelper);
+    /*
+    根据凭证编号查开单id
+     */
+    public Ticketopen quaryIdByNo(Ticketopen ticketopen);
 }

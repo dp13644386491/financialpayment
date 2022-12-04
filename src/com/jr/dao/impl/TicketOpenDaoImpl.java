@@ -166,6 +166,31 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         }
         return list;
     }
+//根据编号查询id
+    @Override
+    public Ticketopen quaryIdByNo(Ticketopen ticketopen) {
+          Ticketopen ticketopen1=new Ticketopen();
+        try {
+            con = DBHelper.getConn();
+            String sql = "SELECT id FROM ticket_open where  no=?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1,ticketopen.getNo());
+            rs = ps.executeQuery();
+            if (rs.next()){
+
+                ticketopen1=new Ticketopen();
+                ticketopen1.setId(rs.getInt(1));
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ticketopen1;
+    }
 
     /**
      *增删改通用方法
