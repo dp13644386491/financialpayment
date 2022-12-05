@@ -115,8 +115,8 @@
 
                 $.get("mst?i=2","index="+val,function (str) {
                     eval("var pageHelper="+str);
-                    //清空tr行
-                    // $("tbody").empty();
+                    // 清空tr行
+                    $("tbody").empty();
                     for(var i=0;i<pageHelper.pageList.length;i++){
 
                         var obj="<tr data-id='2'><td class='table-title'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
@@ -433,11 +433,11 @@
                             <div class="am-fr">
                                 <ul class="am-pagination tpl-pagination">
                                     <li class="am-disabled"><a href="#">«</a></li>
-                                    <li class="am-active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
+<%--                                    <li class="am-active"><a href="#">1</a></li>--%>
+<%--                                    <li><a href="#">2</a></li>--%>
+<%--                                    <li><a href="#">3</a></li>--%>
+<%--                                    <li><a href="#">4</a></li>--%>
+<%--                                    <li><a href="#">5</a></li>--%>
                                     <li><a href="#">»</a></li>
                                 </ul>
                             </div>
