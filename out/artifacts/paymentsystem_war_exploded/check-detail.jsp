@@ -272,13 +272,13 @@
                 </div>
                 <div style="text-align: center;margin-top:40px">
                      <script type="text/javascript">
-                         function show1() {
+                         function show2() {
                              var val=$("[name='txtarea']").val();
                              return val;
                          }
                      </script>
 
-                    <a class="am-btn am-btn-default" href="rds?i=1&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark="+val onclick="return show();return show1();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
+                    <a class="am-btn am-btn-default" href="rds?i=1&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark="+val onclick="return show();return show2();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
                     <a class="am-btn am-btn-primary" href="rds?i=2&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark=$([name='txtarea']).val()" style="margin-left:20px" onclick="return show1();">复核通过</a>
                 </div>
             </div>

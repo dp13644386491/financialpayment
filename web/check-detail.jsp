@@ -45,7 +45,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">${user.name}</span><span class="tpl-header-list-user-ico"> <img
+                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
                         src="assets/img/user01.png"></span>
                 </a>
                 <ul class="am-dropdown-content">
@@ -271,14 +271,7 @@
                     </div>
                 </div>
                 <div style="text-align: center;margin-top:40px">
-                     <script type="text/javascript">
-                         function show1() {
-                             var val=$("[name='txtarea']").val();
-                             return val;
-                         }
-                     </script>
-
-                    <a class="am-btn am-btn-default" href="rds?i=1&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark="+val onclick="return show();return show1();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
+                    <a class="am-btn am-btn-default" href="rds?i=1&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark=$("[name='txtarea'].val()"" onclick="return show();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
                     <a class="am-btn am-btn-primary" href="rds?i=2&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark=$([name='txtarea']).val()" style="margin-left:20px" onclick="return show1();">复核通过</a>
                 </div>
             </div>
