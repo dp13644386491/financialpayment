@@ -43,8 +43,8 @@ public class TicketOpenServlet extends HttpServlet {
             Gson gson=new Gson();
             response.getWriter().println(gson.toJson(enterprise1));
         }
-        if(num.equals("1")){
-
+        if(num!=null){
+            page(request,response);
         }
 
     }

@@ -23,7 +23,7 @@
         $(document).ready(function () {
 
 
-            $("[id='bhbtn']").click(function () {
+            $("[id='bhbtn']").blur(function () {
 
                 var viewUtilityno=$("[name='viewUtilityno']").val();
                 var viewUtilityid=$("[name='viewUtilityid']").val();
@@ -34,12 +34,22 @@
                         window.location.href="check-list.jsp";
                     }
                 });
+            });
 
+            $("[id='pass']").blur(function () {
+
+                var viewUtilityno=$("[name='viewUtilityno']").val();
+                var viewUtilityid=$("[name='viewUtilityid']").val();
+                var remark=$("[name='txtarea']").val();
+                alert(remark+"......");
+                $.get("rds","i=2&no="+viewUtilityno+"&ticket_id="+viewUtilityid+"&remark="+remark,function (str) {
+                    if(str==1){
+                        window.location.href="check-list.jsp";
+                    }
+                });
 
             });
         });
-
-
 
 
         function show() {
@@ -296,7 +306,7 @@
                 </div>
                 <div style="text-align: center;margin-top:40px">
                     <a class="am-btn am-btn-default"  id="bhbtn" onclick="return show();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
-                    <a class="am-btn am-btn-primary" href="rds?i=2&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark=$([name='txtarea']).val()" style="margin-left:20px" onclick="return show1();">复核通过</a>
+                    <a class="am-btn am-btn-primary" style="margin-left:20px" id="pass" onclick="return show1();">复核通过</a>
                 </div>
             </div>
         </div>

@@ -61,7 +61,9 @@ public class ReviewdetailServlet extends HttpServlet {
                 ReviewrecordBizImpl rbi=new ReviewrecordBizImpl();
                 int num1=rbi.changeeviewrecord(reviewrecord);
                 if(num1==1){
-                    request.getRequestDispatcher("check-list.jsp").forward(request,response);
+                    System.out.println("修改成功");
+                    Gson gson=new Gson();
+                    response.getWriter().println(gson.toJson(num1));
                 }
             }
         }
