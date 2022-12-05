@@ -41,8 +41,8 @@ public class SqlHelper {
     public String sqlConcat(){
         return (no==null||no==""?"":(" AND no LIKE '%"+this.no+"%'"))+(acquirerEnterPriseId==null||acquirerEnterPriseId==""?"":" AND acquirer_enterprise_id="+acquirerEnterPriseId)+
                 (enterPriseId==null||enterPriseId==""?"":" AND enterprise_id="+enterPriseId)+(createTime==null||createTime==""?"":" AND create_time='"+createTime+"'")+
-                (status==null||status==""?"":" AND status="+status)+(amountMax==null||amountMax==""?"":" AND amount<="+amountMax)+
-                (amountMin==null||amountMin==""?"":" AND amount>="+amountMin);
+                (status==null||status==""?"":" AND status="+status)+(amountMax==null||amountMax==""?"":" AND amount<="+amountMax+"*"+"10000")+
+                (amountMin==null||amountMin==""?"":" AND amount>="+amountMin+"*"+"10000");
     }
 
     public String getNo() {
