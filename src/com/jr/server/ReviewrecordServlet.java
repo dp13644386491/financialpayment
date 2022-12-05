@@ -23,8 +23,6 @@ import java.util.List;
 
 @WebServlet("/ms")
 public class ReviewrecordServlet extends HttpServlet {
-    Reviewrecord reviewrecord=new Reviewrecord();
-    ReviewrecordBizImpl reviewrecordBiz=new ReviewrecordBizImpl();
     TicketopenBizImpl ticketopenBiz=new TicketopenBizImpl();
 
     @Override
@@ -65,7 +63,6 @@ public class ReviewrecordServlet extends HttpServlet {
         ph.setPageSize(5);
         ph.getTotalPage();
 
-        String num = request.getParameter("i");
         String str=request.getParameter("index");
         if(str==null){
             ph.setIndexPage(1);

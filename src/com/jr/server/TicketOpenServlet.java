@@ -10,6 +10,9 @@ import com.jr.entry.Instituty;
 import com.jr.entry.Reviewrecord;
 import com.jr.entry.Ticketopen;
 import com.jr.util.MD5Util;
+import com.jr.util.PageHelper;
+import com.jr.util.SqlHelper;
+import com.jr.util.ViewOpenEnterprise;
 
 import javax.lang.model.element.NestingKind;
 import javax.servlet.ServletException;
@@ -30,14 +33,57 @@ public class TicketOpenServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        String name=request.getParameter("acquirerEnterPrisename");
-        System.out.println(name);
-        Enterprise enterprise2=new Enterprise();
-        enterprise2.setName(name);
-        EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
-        Enterprise enterprise1=enterpriseBiz1.queryIdAndSocialUniformCodeByEnterpriseName(enterprise2);
-        Gson gson=new Gson();
-        response.getWriter().println(gson.toJson(enterprise1));
+        String num=request.getParameter("i");
+        if(num==null){
+            String name=request.getParameter("acquirerEnterPrisename");
+            Enterprise enterprise2=new Enterprise();
+            enterprise2.setName(name);
+            EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
+            Enterprise enterprise1=enterpriseBiz1.queryIdAndSocialUniformCodeByEnterpriseName(enterprise2);
+            Gson gson=new Gson();
+            response.getWriter().println(gson.toJson(enterprise1));
+        }
+        if(num.equals("1")){
+
+        }
+
+    }
+
+    protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        String no = request.getParameter("no");
+        String acquirerEnterPriseId=request.getParameter("acquirerEnterPriseId");
+        String enterPriseId=request.getParameter("enterPriseId");
+        String status=request.getParameter("status");
+        String createTime=request.getParameter("createtime");
+        String amountMax=request.getParameter("amountMax");
+        String amountMin=request.getParameter("amountMin");
+        SqlHelper sqlHelper = new SqlHelper();
+        TicketopenBizImpl ticketopenBiz=new TicketopenBizImpl();
+        sqlHelper.setNo(no);
+        sqlHelper.setAcquirerEnterPriseId(acquirerEnterPriseId);
+        sqlHelper.setEnterPriseId(enterPriseId);
+        sqlHelper.setCreateTime(createTime);
+        sqlHelper.setAmountMax(amountMax);
+        sqlHelper.setAmountMin(amountMin);
+        sqlHelper.setStatus(status);
+        PageHelper<ViewOpenEnterprise> ph=new PageHelper<>();
+        ph.setTotalCount(ticketopenBiz.getAllnum1(sqlHelper));
+        ph.setPageSize(5);
+        ph.getTotalPage();
+
+        String str=request.getParameter("index");
+        if(str==null){
+            ph.setIndexPage(1);
+        }else{
+            int i=Integer.parseInt(str);
+            ph.setIndexPage(i);
+        }
+        ph.setPageList(ticketopenBiz.getBypage1(ph,sqlHelper));
+        Gson gson = new Gson();
+        response.getWriter().println( gson.toJson(ph));
     }
 
     @Override

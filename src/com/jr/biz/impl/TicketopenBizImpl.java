@@ -75,15 +75,37 @@ public class TicketopenBizImpl implements ITicketopenBiz {
         return todi.alertTicketStatus1(ticketopen);
     }
 
+    /**
+     * 查询全部数据条数status='B'
+     */
     @Override
     public int getAllnum(SqlHelper sqlHelper) {
 
         return todi.queryCountNum(sqlHelper);
     }
 
+    /**
+     * 查询分页信息集合status='B'
+     */
     @Override
     public List<ViewOpenEnterprise> getBypage(PageHelper pageHelper, SqlHelper sqlHelper) {
         return todi.QueryByPage(pageHelper,sqlHelper);
+    }
+
+    /**
+     * 查询分页信息集合
+     */
+    @Override
+    public List<ViewOpenEnterprise> getBypage1(PageHelper pageHelper, SqlHelper sqlHelper) {
+        return todi.QueryByPage1(pageHelper,sqlHelper);
+    }
+
+    /**
+     * 查询全部数据条数
+     */
+    @Override
+    public int getAllnum1(SqlHelper sqlHelper) {
+        return todi.queryCountNum1(sqlHelper);
     }
 
     @Override
