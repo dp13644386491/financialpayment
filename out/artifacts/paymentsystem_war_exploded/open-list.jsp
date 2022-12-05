@@ -49,7 +49,7 @@
             $("[id='amountMax']").blur(function () {       //文本框失去焦点后
                 submitvalues()
             });
-            $("[id='am-navbar-qrcode']").blur(function () {       //文本框失去焦点后
+            $("[name='remark']").click(function () {       //文本框失去焦点后
                 submitvalues()
             });
 
@@ -62,14 +62,14 @@
             var sdate = $("[id='select-date']").val();
             var amountMin = $("[id='amountMin']").val();
             var amountMax = $("[id='amountMax']").val();
-            var amnavbarqrcode=$("[id='am-navbar-qrcode']").val();
-            $.get("ms","i=2&no=" + no +
+            var rept=$("[name='remark']").val();
+            $.get("mst","i=2&no=" + no +
                 "&enterPriseId=" + oid +
                 "&acquirerEnterPriseId=" + cid +
                 "&createtime=" + sdate +
                 "&amountMax=" + amountMax +
                 "&amountMin=" + amountMin+
-                 "amnavbarqrcode="+amnavbarqrcode, function (str) {
+                 "&status="+rept, function (str) {
                 //收单企业下拉框
                 // /*将字符串转成对象格式*/
                 method(str);
@@ -97,7 +97,7 @@
                         "<span class='ele-dot-status ele-dot-status-success'><span>" +
                         "<span class='ele-dot-text' style='width: 80px;'>成功</span><td>" +
                         "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>" +
-                        "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>" +
                         "</span>详情</span></a></div></div></td></tr>";
                 }
                 if (pageHelper.pageList[i].status == "开单中") {
@@ -112,7 +112,7 @@
                         "<span class='ele-dot-status ele-dot-status-info'><span>"+
                         "<span class='ele-dot-text' style='width: 80px;'>开单中</span><td>"+
                         "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                        "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
                         "</span>详情</span></a><span class='am-text-secondary am-icon' style='cursor:pointer'><span>"+
                         "</span>撤销</span></div></div></td>";
                 }
@@ -128,7 +128,23 @@
                         "<span class='ele-dot-status ele-dot-status-error'><span>"+
                         "<span class='ele-dot-text' style='width: 80px;'>复核未通过</span><td>"+
                         "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                        "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                        "</span>重新申请</span></a></div></div></td>";
+                }
+                if (pageHelper.pageList[i].status == "已撤销") {
+                    var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>"+
+                        "<span class='ele-dot-status ele-dot-status-error'><span>"+
+                        "<span class='ele-dot-text' style='width: 80px;'>已撤销</span>"+
+                        "<td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
+                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
                         "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                         "</span>重新申请</span></a></div></div></td>";
                 }
@@ -167,7 +183,7 @@
                                 "<span class='ele-dot-status ele-dot-status-success'><span>" +
                                 "<span class='ele-dot-text' style='width: 80px;'>成功</span><td>" +
                                 "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>" +
-                                "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>" +
                                 "</span>详情</span></a></div></div></td></tr>";
                         }
                         if (pageHelper.pageList[i].status == "开单中") {
@@ -182,7 +198,7 @@
                                 "<span class='ele-dot-status ele-dot-status-info'><span>"+
                                 "<span class='ele-dot-text' style='width: 80px;'>开单中</span><td>"+
                                 "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                                "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
                                 "</span>详情</span></a><span class='am-text-secondary am-icon' style='cursor:pointer'><span>"+
                                 "</span>撤销</span></div></div></td>";
                         }
@@ -198,7 +214,23 @@
                                 "<span class='ele-dot-status ele-dot-status-error'><span>"+
                                 "<span class='ele-dot-text' style='width: 80px;'>复核未通过</span><td>"+
                                 "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                                "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                                "</span>重新申请</span></a></div></div></td>";
+                        }
+                        if (pageHelper.pageList[i].status == "已撤销") {
+                            var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>"+
+                                "<span class='ele-dot-status ele-dot-status-error'><span>"+
+                                "<span class='ele-dot-text' style='width: 80px;'>已撤销</span>"+
+                                "<td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
+                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
                                 "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                                 "</span>重新申请</span></a></div></div></td>";
                         }
@@ -356,12 +388,12 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">处理状态</span>
                                 </span>
-                            <div class="am-btn-group am-btn-group-sm status-type" id="am-navbar-qrcode">
-                                <button type="button" class="am-btn am-btn-primary am-radius" value="">全部</button>
-                                <button type="button" class="am-btn am-btn-default" value="A" >成功</button>
-                                <button type="button" class="am-btn am-btn-default" value="B">开单中</button>
-                                <button type="button" class="am-btn am-btn-default" value="C">已撤销</button>
-                                <button type="button" class="am-btn am-btn-default" value="D">复核未通过</button>
+                            <div class="am-btn-group am-btn-group-sm status-type" >
+                                <button type="button" name="remark" class="am-btn am-btn-primary am-radius" value="">全部</button>
+                                <button type="button" name="remark" class="am-btn am-btn-default" value="A">成功</button>
+                                <button type="button" name="remark" class="am-btn am-btn-default" value="B">开单中</button>
+                                <button type="button" name="remark" class="am-btn am-btn-default" value="C">已撤销</button>
+                                <button type="button" name="remark" class="am-btn am-btn-default" value="D">复核未通过</button>
                             </div>
                         </div>
                     </div>

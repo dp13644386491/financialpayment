@@ -175,7 +175,7 @@ public class ViewUtility {
         ResultSet resultSet=null;
         try {
              getconn = DBHelper.getConn();
-            String sql = "select * from infoview where  no=?";
+            String sql = "select * from infoview where no=?";
             preparedStatement = getconn.prepareStatement(sql);
             preparedStatement.setString(1, no);
              resultSet = preparedStatement.executeQuery();
