@@ -26,9 +26,14 @@ public interface ITicketOpenDao {
     public int insertTicket(Ticketopen ticketopen);
 
     /**
-     * 根据开单id更改票据状态
+     * 根据开单no更改票据状态为D：复核未通过
      */
     public int alertTicketStatus(Ticketopen ticketopen);
+
+    /**
+     * 更新开单状态为A：成功
+     */
+    public int alertTicketStatus1(Ticketopen ticketopen);
 
     /**
      * 查询全部数据条数

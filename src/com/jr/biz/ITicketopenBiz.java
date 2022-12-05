@@ -25,9 +25,14 @@ public interface ITicketopenBiz {
     public int addTicket(Ticketopen ticketopen);
 
     /**
-     * 更新开单状态
+     * 更新开单状态为D：复核未通过
      */
     public int updateTicketopenStatus(Ticketopen ticketopen);
+
+    /**
+     * 更新开单状态为A：成功
+     */
+    public int updateTicketopenStatus1(Ticketopen ticketopen);
 
     /*
      * 分页查询总页数方法

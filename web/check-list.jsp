@@ -90,11 +90,11 @@
                 }
 
                 //看见分页序号超链接
+
                 for(var i=1;i<=pageHelper.totalPage;i++){
-                    var obj=" <li id='page' class='am-active'><a value='"+i+"' >"+i+"</a></li>";
+                    var obj="<li id='page' class='am-active'><a value='"+i+"'>"+i+"</a></li>";
                     $(obj).appendTo("[class='am-disabled']");
                 }
-
 
 
             //窗体加载完后，给分页超链接绑定一个点击事件
@@ -132,7 +132,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">${user.name}</span><span class="tpl-header-list-user-ico"> <img
+                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
                         src="assets/img/user01.png"></span>
                 </a>
                 <ul class="am-dropdown-content">
@@ -274,12 +274,13 @@
 
                             <div class="am-fr">
                                 <ul class="am-pagination tpl-pagination">
-                                    <li class="am-disabled"><a href="#">«</a></li>
-<%--                                    <li class="am-active"><a href="#">1</a></li>--%>
-<%--                                    <li><a href="#">2</a></li>--%>
-<%--                                    <li><a href="#">3</a></li>--%>
-<%--                                    <li><a href="#">4</a></li>--%>
-<%--                                    <li><a href="#">5</a></li>--%>
+                                    <li class='am-disabled'><a href='#'>«</a></li>
+                                    <%--<li class="am-disabled"><a href="#">«</a></li>--%>
+                                    <%--&lt;%&ndash;<li class="am-active"><a href="#">1</a></li>--%>
+                                    <%--<li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>--%>
                                     <li><a href="#">»</a></li>
                                 </ul>
                             </div>

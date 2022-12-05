@@ -33,4 +33,20 @@ public class ReviewrecordBizImpl implements IReviewrecordBiz {
 
         return rrdi.queryReviewrecord(no);
     }
+
+    /*
+     * 根据开单id修改审核记录信息为C：审核未通过，修改备注
+     * */
+    @Override
+    public int changeeviewrecord(Reviewrecord reviewrecord) {
+        return rrdi.updateReviewrecord(reviewrecord);
+    }
+
+    /*
+     * 根据开单id修改审核记录信息为B：审核通过；，修改备注
+     * */
+    @Override
+    public int changeeviewrecord1(Reviewrecord reviewrecord) {
+        return 0;
+    }
 }

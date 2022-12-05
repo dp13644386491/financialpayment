@@ -31,7 +31,7 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
         Reviewrecord reviewrecord=null;
         try {
             con = DBHelper.getConn();
-            String sql="SELECT * FROM reviewrecord WHERE ticket_open_id=(SELECT id FROM ticket_open WHERE no=?)";
+            String sql="SELECT * FROM review_record WHERE ticket_open_id=(SELECT id FROM ticket_open WHERE no=?)";
             ps = con.prepareStatement(sql);
             ps.setInt(1,no);
             rs = ps.executeQuery();
@@ -73,4 +73,26 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
         }
         return num;
     }
+
+    /*
+     * 根据开单id修改审核记录信息为C：审核未通过，修改备注
+     * */
+    @Override
+    public int updateReviewrecord(Reviewrecord reviewrecord) {
+        String sql="UPDATE review_record SET review_status='C',remark=? WHERE ticket_open_id=?";
+        int num=upd(sql,reviewrecord.getRemark(),reviewrecord.getTicketOpenId());
+        return num;
+    }
+
+    /*
+     * 根据开单id修改审核记录信息为B：审核通过；，修改备注
+     * */
+    @Override
+    public int updateReviewrecord1(Reviewrecord reviewrecord) {
+        String sql="UPDATE review_record SET review_status='B',remark=? WHERE ticket_open_id=?";
+        int num=upd(sql,reviewrecord.getRemark(),reviewrecord.getTicketOpenId());
+        return num;
+    }
+
+
 }

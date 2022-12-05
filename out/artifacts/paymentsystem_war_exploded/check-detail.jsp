@@ -1,4 +1,5 @@
 <%@ page import="com.jr.util.ViewUtility" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <html>
@@ -17,12 +18,11 @@
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <script type="text/javascript">
-
         function show() {
             var boo=window.confirm("确定驳回吗？");
             if(boo){
-
                var val= $("[name='txtarea']").val();
+                alert(val);
                 if(val.length==0){
                     alert("备注未填写，请重新复核");
                     return false;
@@ -214,7 +214,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">到期日期</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    ${viewUtility.expriyTime} <span style="font-size: 12px;color: #999">剩余 10 天</span>
+                                    ${viewUtility.expriyTime} <span style="font-size: 12px;color: #999">剩余${sessionScope.day} 天</span>
                                 </div>
                             </div>
                         </form>
@@ -271,8 +271,15 @@
                     </div>
                 </div>
                 <div style="text-align: center;margin-top:40px">
-                    <a class="am-btn am-btn-default" href="check-list.jsp" onclick="return show();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
-                    <a class="am-btn am-btn-primary" href="check-list.jsp" style="margin-left:20px" onclick="return show1();">复核通过</a>
+                     <script type="text/javascript">
+                         function show1() {
+                             var val=$("[name='txtarea']").val();
+                             return val;
+                         }
+                     </script>
+
+                    <a class="am-btn am-btn-default" href="rds?i=1&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark="+val onclick="return show();return show1();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
+                    <a class="am-btn am-btn-primary" href="rds?i=2&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark=$([name='txtarea']).val()" style="margin-left:20px" onclick="return show1();">复核通过</a>
                 </div>
             </div>
         </div>
