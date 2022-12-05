@@ -1,7 +1,6 @@
 package com.jr.dao.impl;
 
 import com.jr.dao.IInstitutyDao;
-import com.jr.entry.Enterprise;
 import com.jr.entry.Instituty;
 import com.jr.util.DBHelper;
 

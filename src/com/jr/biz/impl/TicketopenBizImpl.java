@@ -3,18 +3,13 @@ package com.jr.biz.impl;
 import com.jr.biz.ITicketopenBiz;
 import com.jr.dao.impl.TicketOpenDaoImpl;
 import com.jr.entry.Ticketopen;
-import com.jr.util.DBHelper;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
 import com.jr.util.ViewOpenEnterprise;
 
-import javax.servlet.annotation.WebServlet;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TicketopenBizImpl implements ITicketopenBiz {
@@ -75,15 +70,37 @@ public class TicketopenBizImpl implements ITicketopenBiz {
         return todi.alertTicketStatus1(ticketopen);
     }
 
+    /**
+     * 查询全部数据条数status='B'
+     */
     @Override
     public int getAllnum(SqlHelper sqlHelper) {
 
         return todi.queryCountNum(sqlHelper);
     }
 
+    /**
+     * 查询分页信息集合status='B'
+     */
     @Override
     public List<ViewOpenEnterprise> getBypage(PageHelper pageHelper, SqlHelper sqlHelper) {
         return todi.QueryByPage(pageHelper,sqlHelper);
+    }
+
+    /**
+     * 查询分页信息集合
+     */
+    @Override
+    public List<ViewOpenEnterprise> getBypage1(PageHelper pageHelper, SqlHelper sqlHelper) {
+        return todi.QueryByPage1(pageHelper,sqlHelper);
+    }
+
+    /**
+     * 查询全部数据条数
+     */
+    @Override
+    public int getAllnum1(SqlHelper sqlHelper) {
+        return todi.queryCountNum1(sqlHelper);
     }
 
     @Override

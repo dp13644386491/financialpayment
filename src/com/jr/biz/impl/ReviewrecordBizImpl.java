@@ -2,13 +2,6 @@ package com.jr.biz.impl;
 import com.jr.biz.IReviewrecordBiz;
 import com.jr.dao.impl.ReviewrecordDaoImpl;
 import com.jr.entry.Reviewrecord;
-import com.jr.util.DBHelper;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class ReviewrecordBizImpl implements IReviewrecordBiz {
 

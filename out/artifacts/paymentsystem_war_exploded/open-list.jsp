@@ -49,7 +49,7 @@
             $("[id='amountMax']").blur(function () {       //文本框失去焦点后
                 submitvalues()
             });
-            $("[id='am-navbar-qrcode']").blur(function () {       //文本框失去焦点后
+            $("[id='rety']").blur(function () {       //文本框失去焦点后
                 submitvalues()
             });
 
@@ -88,14 +88,15 @@
             eval("var pageHelper="+str);
 
             for(var i=0;i<pageHelper.pageList.length;i++){
-                var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
+                var obj="<tr data-id='2'><td class='table-title'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
                     pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
                     pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
                     pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
                     pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
                     pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
                     pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='rds?no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+                    pageHelper.pageList[i].uplinkAddress+"</td><td class='am-hide-sm-only'>" +
+                    pageHelper.pageList[i].status+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
                 $(obj).appendTo("[id='doc-modal-list']");
             }
 
@@ -118,14 +119,15 @@
                     $("tbody").empty();
                     for(var i=0;i<pageHelper.pageList.length;i++){
 
-                        var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
+                        var obj="<tr data-id='2'><td class='table-title'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
                             pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+                            pageHelper.pageList[i].uplinkAddress+"</td><td class='am-hide-sm-only'>" +
+                            pageHelper.pageList[i].status+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
                         $(obj).appendTo("tbody");
 
                     }
@@ -196,7 +198,7 @@
                                 <i class="am-icon-angle-right"></i>
                                 <span>开具付款凭证</span>
                             </a>
-                            <a href="open-list.jsp" class="active">
+                            <a href="open-list.jsp.jsp" class="active">
                                 <i class="am-icon-angle-right"></i>
                                 <span>付款列表</span>
                             </a>
@@ -281,9 +283,8 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">处理状态</span>
                                 </span>
-                            <div class="am-btn-group am-btn-group-sm status-type" id="am-navbar-qrcode">
-                                <button type="button" class="am-btn am-btn-primary am-radius" value="">全部</button>
-                                <button type="button" class="am-btn am-btn-default" value="A" >成功</button>
+                            <div class="am-btn-group am-btn-group-sm status-type" id="rety">
+                                <button type="button" class="am-btn am-btn-primary am-radius" value="A">成功</button>
                                 <button type="button" class="am-btn am-btn-default" value="B">开单中</button>
                                 <button type="button" class="am-btn am-btn-default" value="C">已撤销</button>
                                 <button type="button" class="am-btn am-btn-default" value="D">审核未通过</button>

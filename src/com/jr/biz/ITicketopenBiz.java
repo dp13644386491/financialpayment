@@ -35,15 +35,27 @@ public interface ITicketopenBiz {
     public int updateTicketopenStatus1(Ticketopen ticketopen);
 
     /*
-     * 分页查询总页数方法
+     * 分页查询总页数方法status='B'
      * */
     public int getAllnum(SqlHelper sqlHelper);
 
     /*
-     * 分页根据页数查询方法
+     * 分页根据页数查询方法status='B'
      * */
     public List<ViewOpenEnterprise> getBypage(PageHelper pageHelper, SqlHelper sqlHelper);
+
     /*
+     * 分页根据页数查询方法
+     * */
+    public List<ViewOpenEnterprise> getBypage1(PageHelper pageHelper, SqlHelper sqlHelper);
+
+
+    /*
+     * 分页查询总页数方法
+     * */
+    public int getAllnum1(SqlHelper sqlHelper);
+    /*
+
     根据凭证编号查开单id
      */
     public Ticketopen quaryIdByNo(Ticketopen ticketopen);

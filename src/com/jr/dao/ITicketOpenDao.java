@@ -36,14 +36,24 @@ public interface ITicketOpenDao {
     public int alertTicketStatus1(Ticketopen ticketopen);
 
     /**
-     * 查询全部数据条数
+     * 查询全部数据条数status='B'
      */
     public int queryCountNum(SqlHelper sqlHelper);
 
     /**
-     * 查询分页信息集合
+     * 查询分页信息集合status='B'
      */
     public List<ViewOpenEnterprise> QueryByPage(PageHelper pageHelper, SqlHelper sqlHelper);
+
+    /**
+     * 查询分页信息集合
+     */
+    public List<ViewOpenEnterprise> QueryByPage1(PageHelper pageHelper, SqlHelper sqlHelper);
+
+    /**
+     * 查询全部数据条数
+     */
+    public int queryCountNum1(SqlHelper sqlHelper);
     /*
    根据凭证编号查开单id
     */

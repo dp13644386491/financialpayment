@@ -12,8 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +99,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
     }
 
     /**
-     * 查询全部数据条数
+     * 查询全部数据条数status='B'
      */
     @Override
     public int queryCountNum(SqlHelper sqlHelper) {
@@ -127,7 +125,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
     }
 
     /**
-     * 查询分页信息集合
+     * 查询分页信息集合status='B'
      */
     @Override
     public List<ViewOpenEnterprise> QueryByPage(PageHelper pageHelper, SqlHelper sqlHelper) {
@@ -165,6 +163,86 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         }
         return list;
     }
+
+    /**
+     * 查询全部数据条数
+     */
+    @Override
+    public int queryCountNum1(SqlHelper sqlHelper) {
+        int num=0;
+        try {
+            con=DBHelper.getConn();
+            String sql = "SELECT COUNT(no) FROM v_open_enterpise WHERE no IS NOT NULL" + sqlHelper.sqlConcat();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            if(rs.next()){
+                num=rs.getInt(1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBHelper.closeAll(rs,ps,con);
+        }
+        return num;
+    }
+
+    /**
+     * 查询分页信息集合
+     */
+    @Override
+    public List<ViewOpenEnterprise> QueryByPage1(PageHelper pageHelper, SqlHelper sqlHelper) {
+        List<ViewOpenEnterprise> list=new ArrayList<>();
+        try {
+            con=DBHelper.getConn();
+            String sql="select * from v_open_enterpise WHERE no IS NOT NULL" + sqlHelper.sqlConcat()+" limit ?,?";
+            ps=con.prepareStatement(sql);
+            ps.setInt(1,pageHelper.getStartNum());
+            ps.setInt(2,pageHelper.getPageSize());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                ViewOpenEnterprise viewOpenEnterprise = new ViewOpenEnterprise();
+                viewOpenEnterprise.setNo(rs.getString("no"));
+                viewOpenEnterprise.setAcquirerEnterPriseId(rs.getString("acquirer_enterprise_id"));
+                viewOpenEnterprise.setAmount(rs.getString("amount"));
+                String status=rs.getString("status");
+                if(status.equals("A")){
+                    viewOpenEnterprise.setStatus("成功");
+                }
+                if(status.equals("B")){
+                    viewOpenEnterprise.setStatus("开单中");
+                }
+                if(status.equals("C")){
+                    viewOpenEnterprise.setStatus("已撤销");
+                }
+                if(status.equals("D")){
+                    viewOpenEnterprise.setStatus("复核未成功");
+                }
+                viewOpenEnterprise.setEnterPriseId(rs.getString("enterprise_id"));
+                viewOpenEnterprise.setInstitutyId(rs.getString("instituty_id"));
+                viewOpenEnterprise.setCreateTime(rs.getString("create_time"));
+                viewOpenEnterprise.setExpiryTime(rs.getString("expiry_time"));
+                viewOpenEnterprise.setUplinkAddress(rs.getString("uplink_address"));
+                viewOpenEnterprise.setEnterPriseName(rs.getString("enterprise_name"));
+                viewOpenEnterprise.setAcquirerEnterPriseName(rs.getString("acquirer_enterprise_name"));
+                viewOpenEnterprise.setInstitutyName(rs.getString("instituty_name"));
+                list.add(viewOpenEnterprise);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBHelper.closeAll(rs,ps,con);
+        }
+        return list;
+    }
+
 //根据编号查询id
     @Override
     public Ticketopen quaryIdByNo(Ticketopen ticketopen) {
