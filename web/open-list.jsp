@@ -65,14 +65,14 @@
             var sdate = $("[id='select-date']").val();
             var amountMin = $("[id='amountMin']").val();
             var amountMax = $("[id='amountMax']").val();
-            var amnavbarqrcode=$("[id='am-navbar-qrcode']").val();
+            var amnavbarqrcode=$("[id='rety']").val();
             $.get("ms","i=2&no=" + no +
                 "&enterPriseId=" + oid +
                 "&acquirerEnterPriseId=" + cid +
                 "&createtime=" + sdate +
                 "&amountMax=" + amountMax +
                 "&amountMin=" + amountMin+
-                 "amnavbarqrcode="+amnavbarqrcode, function (str) {
+                 "rety="+rety, function (str) {
                 //收单企业下拉框
                 // /*将字符串转成对象格式*/
                 method(str);
@@ -115,7 +115,7 @@
 
                 $.get("mst?i=2","index="+val,function (str) {
                     eval("var pageHelper="+str);
-                    //清空tr行
+                    // 清空tr行
                     $("tbody").empty();
                     for(var i=0;i<pageHelper.pageList.length;i++){
 

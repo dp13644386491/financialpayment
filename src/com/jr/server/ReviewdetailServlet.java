@@ -1,5 +1,6 @@
 package com.jr.server;
 
+import com.google.gson.Gson;
 import com.jr.biz.impl.ReviewrecordBizImpl;
 import com.jr.biz.impl.TicketopenBizImpl;
 import com.jr.entry.Reviewrecord;
@@ -60,7 +61,9 @@ public class ReviewdetailServlet extends HttpServlet {
                 ReviewrecordBizImpl rbi=new ReviewrecordBizImpl();
                 int num1=rbi.changeeviewrecord(reviewrecord);
                 if(num1==1){
-                    request.getRequestDispatcher("check-list.jsp").forward(request,response);
+                    System.out.println("修改成功");
+                    Gson gson=new Gson();
+                    response.getWriter().println(gson.toJson(num1));
                 }
             }
         }
@@ -83,8 +86,11 @@ public class ReviewdetailServlet extends HttpServlet {
                 ReviewrecordBizImpl rbi=new ReviewrecordBizImpl();
                 int num1=rbi.changeeviewrecord1(reviewrecord);
                 if(num1==1){
-                    request.getRequestDispatcher("check-list.jsp").forward(request,response);
+                    System.out.println("修改成功");
+                    Gson gson=new Gson();
+                    response.getWriter().println(gson.toJson(num1));
                 }
+
             }
         }
 
