@@ -96,7 +96,6 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         int num=0;
         try {
             con=DBHelper.getConn();
-            /*String sql = "SELECT COUNT(id) FROM ticket_open WHERE status='B'" + sqlHelper.sqlConcat();*/
             String sql = "SELECT COUNT(no) FROM v_open_enterpise WHERE status='B'" + sqlHelper.sqlConcat();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
@@ -123,24 +122,12 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         List<ViewOpenEnterprise> list=new ArrayList<>();
         try {
             con=DBHelper.getConn();
-            /*String sql="select * from ticket_open WHERE status='B'" + sqlHelper.sqlConcat()+" limit ?,?";*/
             String sql="select * from v_open_enterpise WHERE status='B'" + sqlHelper.sqlConcat()+" limit ?,?";
-            System.out.println(sql);
             ps=con.prepareStatement(sql);
             ps.setInt(1,pageHelper.getStartNum());
             ps.setInt(2,pageHelper.getPageSize());
             rs=ps.executeQuery();
             while(rs.next()){
-                /*Ticketopen ticketopen = new Ticketopen();
-                ticketopen.setNo(rs.getString("no"));
-                ticketopen.setAcquirerEnterPriseId(rs.getString("acquirer_enterprise_id"));
-                ticketopen.setAmount(rs.getDouble("amount"));
-                ticketopen.setEnterPriseId(rs.getString("enterprise_id"));
-                ticketopen.setInstitutyId(rs.getInt("instituty_id"));
-                ticketopen.setCreateTime(rs.getDate("create_time"));
-                ticketopen.setExpiryTime(rs.getDate("expiry_time"));
-                ticketopen.setUplinkAddress(rs.getString("uplink_address"));
-                list.add(ticketopen);*/
                 ViewOpenEnterprise viewOpenEnterprise = new ViewOpenEnterprise();
                 viewOpenEnterprise.setNo(rs.getString("no"));
                 viewOpenEnterprise.setAcquirerEnterPriseId(rs.getString("acquirer_enterprise_id"));

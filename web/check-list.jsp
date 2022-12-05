@@ -39,7 +39,6 @@
                 submitvalues()
             });
             $("[id='select-date']").blur(function () {       //文本框失去焦点后
-                alert($(this).val())
                 submitvalues()
             });
             $("[id='amountMin']").blur(function () {       //文本框失去焦点后
@@ -92,9 +91,11 @@
 
                 //看见分页序号超链接
                 for(var i=1;i<=pageHelper.totalPage;i++){
-                    var obj="<li id='page' class='am-active'><a value='"+i+"'>"+i+"</a></li>";
+                    var obj=" <li id='page' class='am-active'><a value='"+i+"' >"+i+"</a></li>";
                     $(obj).appendTo("[class='am-disabled']");
                 }
+
+
 
             //窗体加载完后，给分页超链接绑定一个点击事件
             $(document).on("click","a",function(){
@@ -208,9 +209,6 @@
                             <select name="enterprisename" id="checkenterpriseid" class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择收单企业</option>
                                 <option value="null">无</option>
-                                <%--<option value="a">百度科技有限公司</option>
-                                <option value="b">京东集团</option>
-                                <option value="c">小米</option>--%>
                             </select>
                         </div>
                     </div>
@@ -220,8 +218,6 @@
                             <select name="enterprisename" id='openticketenterid' class="am-form-field" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择开单企业</option>
                                 <option value="null">无</option>
-                                <%--<option value="a">腾讯科技有限公司</option>
-                                <option value="b">隆基股份有限公司</option>--%>
                             </select>
                         </div>
                     </div>
@@ -271,102 +267,7 @@
                             </tr>
                             </thead>
                             <tbody id="doc-modal-list">
-                            <%--<tr data-id="2">
-                                <td class="am-hide-sm-only">N20220328000001</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D68</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
 
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220406000002</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D69</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220406000003</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D70</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220407000004</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D71</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220407000005</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D72</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>--%>
                             </tbody>
                         </table>
                         <div class="am-cf">
@@ -374,11 +275,11 @@
                             <div class="am-fr">
                                 <ul class="am-pagination tpl-pagination">
                                     <li class="am-disabled"><a href="#">«</a></li>
-                                    <%--<li class="am-active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>--%>
+<%--                                    <li class="am-active"><a href="#">1</a></li>--%>
+<%--                                    <li><a href="#">2</a></li>--%>
+<%--                                    <li><a href="#">3</a></li>--%>
+<%--                                    <li><a href="#">4</a></li>--%>
+<%--                                    <li><a href="#">5</a></li>--%>
                                     <li><a href="#">»</a></li>
                                 </ul>
                             </div>

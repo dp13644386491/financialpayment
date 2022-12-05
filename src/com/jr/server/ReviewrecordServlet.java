@@ -46,7 +46,7 @@ public class ReviewrecordServlet extends HttpServlet {
         String no = request.getParameter("no");
         String acquirerEnterPriseId=request.getParameter("acquirerEnterPriseId");
         String enterPriseId=request.getParameter("enterPriseId");
-        String createTime=request.getParameter("createTime");
+        String createTime=request.getParameter("createtime");
         String amountMax=request.getParameter("amountMax");
         String amountMin=request.getParameter("amountMin");
         SqlHelper sqlHelper = new SqlHelper();

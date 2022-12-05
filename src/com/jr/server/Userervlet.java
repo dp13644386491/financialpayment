@@ -43,19 +43,20 @@ public class Userervlet extends HttpServlet {
         user1.setAccount(account);
         user1.setPassword(password);
         User user2=userBiz.login(user1);
+        if (user2!=null){
         Enterprise enterprise2=new Enterprise();
         enterprise2.setId(Integer.parseInt(user2.getEnterPriseId()));
         EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
         Enterprise enterprise1=  enterpriseBiz1.getEnterpriseInfo(enterprise2);
-        System.out.println(user2+"..............");
-        if(  user2!=null){
             HttpSession session=request.getSession();
             session.setAttribute("user",user2);
             session.setAttribute("sss",enterprise1);
             request.getRequestDispatcher("ticket-open.jsp").forward(request ,response);
 
         }else {
-           response.sendRedirect("login.jsp");
+            response.getWriter().write("<script language='javascript'>alert('账号或密码错误，登录失败！');" +
+                    "window.location.href='login.jsp';</script>");
+
         }
     }
 }

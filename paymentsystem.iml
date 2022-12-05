@@ -41,5 +41,23 @@
     <orderEntry type="library" name="lib (2)" level="project" />
     <orderEntry type="library" name="lib (3)" level="project" />
     <orderEntry type="library" name="lib (4)" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/apache-tomcat-8.5.38/lib/jsp-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/apache-tomcat-8.5.38/lib/servlet-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
