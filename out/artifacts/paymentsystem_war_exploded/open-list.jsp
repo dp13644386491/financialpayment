@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -14,6 +15,126 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <script src="assets/js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+                $.get("mst?i=1", function (str) {
+                    method(str);
+                });
+            //窗体加载完，加载公司名称
+            $.get("eps",function (str) {
+                eval("var list="+str);
+                for(var i=0;i<list.length;i++){
+                    var obj="<option value='"+list[i].id+"'>"+list[i].name+"</option>"
+                    $(obj).appendTo("[name='enterprisename']");
+                }
+            });
+
+            $("[id='openticketenterid']").change(function () {
+                submitvalues()
+            });
+
+            $("[id='checkenterpriseid']").change(function () {
+                submitvalues()
+            });
+            $("[id='certificate-number-no']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+            $("[id='select-date']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+            $("[id='amountMin']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+            $("[id='amountMax']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+            $("[id='am-navbar-qrcode']").blur(function () {       //文本框失去焦点后
+                submitvalues()
+            });
+
+
+
+
+        });
+
+        function submitvalues() {
+            var no = $("[id='certificate-number-no']").val();
+            var cid = $("[id='checkenterpriseid']").val();
+            var oid = $("[id='openticketenterid']").val();
+            var sdate = $("[id='select-date']").val();
+            var amountMin = $("[id='amountMin']").val();
+            var amountMax = $("[id='amountMax']").val();
+            var amnavbarqrcode=$("[id='am-navbar-qrcode']").val();
+            $.get("ms","i=2&no=" + no +
+                "&enterPriseId=" + oid +
+                "&acquirerEnterPriseId=" + cid +
+                "&createtime=" + sdate +
+                "&amountMax=" + amountMax +
+                "&amountMin=" + amountMin+
+                 "amnavbarqrcode="+amnavbarqrcode, function (str) {
+                //收单企业下拉框
+                // /*将字符串转成对象格式*/
+                method(str);
+            });
+        }
+
+        function method(str) {
+            $("[id='doc-modal-list']").empty();
+            $("[id='page']").empty();
+
+            //窗体内容加载后，加载开单表的分页数据
+            //看见具体开单表值
+            eval("var pageHelper="+str);
+
+            for(var i=0;i<pageHelper.pageList.length;i++){
+                var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
+                    pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
+                    pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
+                    pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
+                    pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
+                    pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
+                    pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
+                    pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='rds?no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+                $(obj).appendTo("[id='doc-modal-list']");
+            }
+
+            //看见分页序号超链接
+
+            for(var i=1;i<=pageHelper.totalPage;i++){
+                var obj="<li id='page' class='am-active'><a value='"+i+"'>"+i+"</a></li>";
+                $(obj).appendTo("[class='am-disabled']");
+            }
+
+
+            //窗体加载完后，给分页超链接绑定一个点击事件
+            $(document).on("click","a",function(){
+                // 当a超链接点击的时候，向后台服务器发送ajax请求：
+                var val=$(this)[0].getAttribute("value");
+
+                $.get("mst?i=2","index="+val,function (str) {
+                    eval("var pageHelper="+str);
+                    //清空tr行
+                    $("tbody").empty();
+                    for(var i=0;i<pageHelper.pageList.length;i++){
+
+                        var obj="<tr data-id='2'><td class='am-hide-sm-only'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
+                            pageHelper.pageList[i].uplinkAddress+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+                        $(obj).appendTo("tbody");
+
+                    }
+                })
+            });
+        }
+
+
+    </script>
 </head>
 <body data-type="generalComponents">
 <header class="am-topbar am-topbar-inverse admin-header">
@@ -116,28 +237,30 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">凭证编号</span>
                                 </span>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;请输入凭证编号"
+                            <input type="text"   id="certificate-number-no"   class="am-form-field" placeholder="&nbsp;&nbsp;请输入凭证编号"
                                    style="border: 1px solid #c2cad8;width: 84%;border-radius: 3px;">
                         </div>
                     </div>
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">收单企业</span>
-                            <select data-am-selected="{btnSize: 'sm'}">
+                            <select   id="checkenterpriseid"    data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择收单企业</option>
-                                <option value="a">百度科技有限公司</option>
-                                <option value="b">京东集团</option>
-                                <option value="c">小米</option>
+                                <option value="null">无</option>
+<%--                                <option value="a">百度科技有限公司</option>--%>
+<%--                                <option value="b">京东集团</option>--%>
+<%--                                <option value="c">小米</option>--%>
                             </select>
                         </div>
                     </div>
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">开单企业</span>
-                            <select class="am-form-field" data-am-selected="{btnSize: 'sm'}">
+                            <select class="am-form-field" id="openticketenterid" data-am-selected="{btnSize: 'sm'}">
                                 <option value="">请选择开单企业</option>
-                                <option value="a">腾讯科技有限公司</option>
-                                <option value="b">隆基股份有限公司</option>
+                                <option value="null">无</option>
+<%--                                <option value="a">腾讯科技有限公司</option>--%>
+<%--                                <option value="b">隆基股份有限公司</option>--%>
                             </select>
                         </div>
                     </div>
@@ -146,7 +269,7 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">开单日期</span>
                                 </span>
-                            <input type="text" class="am-form-field" data-am-datepicker
+                            <input type="text"    id="select-date"    class="am-form-field" data-am-datepicker
                                    placeholder="&nbsp;&nbsp;请选择日期"
                                    style="border: 1px solid #c2cad8;width: 68%;border-radius: 3px;">
                         </div>
@@ -158,11 +281,12 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">处理状态</span>
                                 </span>
-                            <div class="am-btn-group am-btn-group-sm status-type">
-                                <button type="button" class="am-btn am-btn-primary am-radius">全部</button>
-                                <button type="button" class="am-btn am-btn-default">成功</button>
-                                <button type="button" class="am-btn am-btn-default">开单中</button>
-                                <button type="button" class="am-btn am-btn-default">失败</button>
+                            <div class="am-btn-group am-btn-group-sm status-type" id="am-navbar-qrcode">
+                                <button type="button" class="am-btn am-btn-primary am-radius" value="">全部</button>
+                                <button type="button" class="am-btn am-btn-default" value="A" >成功</button>
+                                <button type="button" class="am-btn am-btn-default" value="B">开单中</button>
+                                <button type="button" class="am-btn am-btn-default" value="C">已撤销</button>
+                                <button type="button" class="am-btn am-btn-default" value="D">审核未通过</button>
                             </div>
                         </div>
                     </div>
@@ -171,12 +295,12 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">凭证金额</span>
                                 </span>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最低金额(万)"
+                            <input type="text"  id="amountMin"   class="am-form-field" placeholder="&nbsp;&nbsp;最低金额(万)"
                                    style="border: 1px solid #c2cad8;width: 23%;border-radius: 3px;">
                             <div class="am-form-field"
                                  style="width: 0%; border-radius: 3px;border: none;margin-left: 10px;">~
                             </div>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最高金额(万)"
+                            <input type="text"  id="amountMax"   class="am-form-field" placeholder="&nbsp;&nbsp;最高金额(万)"
                                    style="border: 1px solid #c2cad8;width: 23%;border-radius: 3px;margin-left: 20px;">
                         </div>
                     </div>

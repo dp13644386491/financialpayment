@@ -31,7 +31,6 @@ public class TicketOpenServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String name=request.getParameter("acquirerEnterPrisename");
-        System.out.println(name);
         Enterprise enterprise2=new Enterprise();
         enterprise2.setName(name);
         EnterpriseBizImpl enterpriseBiz1=new EnterpriseBizImpl();
