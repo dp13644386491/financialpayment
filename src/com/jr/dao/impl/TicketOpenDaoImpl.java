@@ -221,7 +221,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
                     viewOpenEnterprise.setStatus("已撤销");
                 }
                 if(status.equals("D")){
-                    viewOpenEnterprise.setStatus("复核未成功");
+                    viewOpenEnterprise.setStatus("复核未通过");
                 }
                 viewOpenEnterprise.setEnterPriseId(rs.getString("enterprise_id"));
                 viewOpenEnterprise.setInstitutyId(rs.getString("instituty_id"));
