@@ -17,11 +17,35 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <script src="assets/js/jquery-1.8.3.js" type="text/javascript"></script>
     <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            $("[id='bhbtn']").click(function () {
+
+                var viewUtilityno=$("[name='viewUtilityno']").val();
+                var viewUtilityid=$("[name='viewUtilityid']").val();
+                var remark=$("[name='txtarea']").val();
+                alert(remark+"......");
+                $.get("rds","i=1&no="+viewUtilityno+"&ticket_id="+viewUtilityid+"&remark="+remark,function (str) {
+                    if(str==1){
+                        window.location.href="check-list.jsp";
+                    }
+                });
+
+
+            });
+        });
+
+
+
+
         function show() {
             var boo=window.confirm("确定驳回吗？");
             if(boo){
-               var val= $("[name='txtarea']").val();
+                var val= $("[name='txtarea']").val();
                 alert(val);
                 if(val.length==0){
                     alert("备注未填写，请重新复核");
@@ -45,7 +69,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
+                    <span class="tpl-header-list-user-nick">${user.name}</span><span class="tpl-header-list-user-ico"> <img
                         src="assets/img/user01.png"></span>
                 </a>
                 <ul class="am-dropdown-content">
@@ -271,13 +295,15 @@
                     </div>
                 </div>
                 <div style="text-align: center;margin-top:40px">
-                    <a class="am-btn am-btn-default" href="rds?i=1&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark=$("[name='txtarea'].val()"" onclick="return show();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
+                    <a class="am-btn am-btn-default"  id="bhbtn" onclick="return show();">驳&nbsp;&nbsp;&nbsp;&nbsp; 回</a>
                     <a class="am-btn am-btn-primary" href="rds?i=2&no=${viewUtility.no}&ticket_id=${viewUtility.ticket_id}&remark=$([name='txtarea']).val()" style="margin-left:20px" onclick="return show1();">复核通过</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<input type="hidden" name="viewUtilityno" value="${viewUtility.no}"/>
+<input type="hidden" name="viewUtilityid" value="${viewUtility.ticket_id}"/>
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
