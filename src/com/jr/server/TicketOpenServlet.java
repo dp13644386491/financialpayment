@@ -9,10 +9,7 @@ import com.jr.entry.Enterprise;
 import com.jr.entry.Instituty;
 import com.jr.entry.Reviewrecord;
 import com.jr.entry.Ticketopen;
-import com.jr.util.MD5Util;
-import com.jr.util.PageHelper;
-import com.jr.util.SqlHelper;
-import com.jr.util.ViewOpenEnterprise;
+import com.jr.util.*;
 
 import javax.lang.model.element.NestingKind;
 import javax.servlet.ServletException;
@@ -30,6 +27,7 @@ import java.util.Date;
 public class TicketOpenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("到达doget方法");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -43,8 +41,11 @@ public class TicketOpenServlet extends HttpServlet {
             Gson gson=new Gson();
             response.getWriter().println(gson.toJson(enterprise1));
         }
-        if(num!=null){
+        if(num.equals("1")||num.equals("2")){
             page(request,response);
+        }else if (num.equals("3")){
+            System.out.println("到达3");
+            selectALLByViewUtility(request,response);
         }
 
     }
@@ -176,7 +177,7 @@ public class TicketOpenServlet extends HttpServlet {
           Ticketopen ticketopen3=new Ticketopen();
           ticketopen3.setNo(ticketopen1.getNo());
           TicketopenBizImpl ticketopenBiz3=new TicketopenBizImpl();
-          Ticketopen ticketopen4=ticketopenBiz3.quaryIdByNo(ticketopen3);
+          Ticketopen ticketopen4=ticketopenBiz3.quaryAllByNo(ticketopen3);
            int userid=Integer.parseInt(request.getParameter("userid"));
            Reviewrecord reviewrecord1=new Reviewrecord();
            reviewrecord1.setTicketOpenId(ticketopen4.getId());
@@ -198,5 +199,25 @@ public class TicketOpenServlet extends HttpServlet {
        Gson gson=new Gson();
        response.getWriter().println(gson.toJson(i));
 
+   }
+   //通过视图查询所有信息
+   public void  selectALLByViewUtility(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       System.out.println("到达selectALLByViewUtility");
+        String no=request.getParameter("N20220328000001");
+       ViewUtility viewUtility2=ViewUtility.sleectInfoView(no);
+       ReviewrecordBizImpl reviewrecordBiz1=new ReviewrecordBizImpl();
+       Reviewrecord reviewrecord1=reviewrecordBiz1.getReviewrecord(Integer.parseInt(no));
+       int day=0;
+       try {
+           day= (int) ((new SimpleDateFormat("yyyy-MM-dd").parse(viewUtility2.getExpriyTime()).getTime()-new Date().getTime())/(1000*3600*24));
+       } catch (ParseException e) {
+           e.printStackTrace();
+       }
+       System.out.println(viewUtility2);
+       HttpSession session1=request.getSession();
+       session1.setAttribute("xcv",viewUtility2);
+       session1.setAttribute("dfg",reviewrecord1);
+       session1.setAttribute("day1",day);
+       request.getRequestDispatcher("open-detail").forward(request,response);
    }
 }

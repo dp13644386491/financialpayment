@@ -104,7 +104,7 @@ public class TicketopenBizImpl implements ITicketopenBiz {
     }
 
     @Override
-    public Ticketopen quaryIdByNo(Ticketopen ticketopen) {
-        return todi.quaryIdByNo(ticketopen);
+    public Ticketopen quaryAllByNo(Ticketopen ticketopen) {
+        return todi.quaryAllByNo(ticketopen);
     }
 }

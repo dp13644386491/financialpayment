@@ -99,7 +99,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证编号</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    N20220328000001
+                                    ${xcv.no}
                                 </div>
                             </div>
                         </form>
@@ -109,7 +109,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">处理状态</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    开单中<span style="font-size: 12px;color: #999;margin-left: 5px;"> 内部复核中</span>
+                                    ${dfg. reviewStatus}<span style="font-size: 12px;color: #999;margin-left: 5px;"> 内部复核中</span>
                                 </div>
                             </div>
                         </form>
@@ -119,7 +119,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">开单企业</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    百度科技有限公司
+                                    ${xcv.openename}
                                 </div>
                             </div>
                         </form>
@@ -129,7 +129,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    91110000802100XXXX
+                                    ${xcv.openescu}
                                 </div>
                             </div>
                         </form>
@@ -139,7 +139,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">收单企业</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    腾讯科技有限公司
+                                    ${xcv.receiptename}
                                 </div>
                             </div>
                         </form>
@@ -149,7 +149,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    91110000802100AAAA
+                                   ${xcv. receiptescu}
                                 </div>
                             </div>
                         </form>
@@ -159,7 +159,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证金额</label>
                                 <div class="am-u-sm-9" style="font-size: 19px;color: red;font-weight: 500;">
-                                    10,000,000.00元
+                                   ${xcv.amount}
                                 </div>
                             </div>
                         </form>
@@ -169,7 +169,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">金融机构</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    工商银行
+                                    ${xcv.institutyname}
                                 </div>
                             </div>
                         </form>
@@ -179,7 +179,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">开单日期</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    2021-03-28
+                                   ${xcv.createTime}
                                 </div>
                             </div>
                         </form>
@@ -189,7 +189,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">到期日期</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    2021-04-28 <span style="font-size: 12px;color: #999">剩余 10 天</span>
+                                    ${xcv.expriyTime} <span style="font-size: 12px;color: #999">剩余 ${day1.day} 天</span>
                                 </div>
                             </div>
                         </form>
@@ -199,7 +199,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">付息方式</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    融资企业付息
+                                   ${xcv.paymentInterestItype}
                                 </div>
                             </div>
                         </form>
@@ -209,7 +209,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">备注</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    备注信息备注信息备注信息备注信息备注信息备注信息备注信息
+                                  ${xcv.ticketRemark}
                                 </div>
                             </div>
                         </form>
@@ -238,7 +238,7 @@
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">备注</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    <textarea disabled class="" rows="4" id="user-intro" placeholder="审核备注"></textarea>
+                                    <textarea disabled class="" rows="4" id="user-intro" placeholder="${dfg.remark}"></textarea>
                                 </div>
                             </div>
                         </form>

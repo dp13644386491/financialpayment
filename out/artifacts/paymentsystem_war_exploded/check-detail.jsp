@@ -23,7 +23,7 @@
         $(document).ready(function () {
 
 
-            $("[id='bhbtn']").blur(function () {
+            $("[id='bhbtn']").click(function () {
 
                 var viewUtilityno=$("[name='viewUtilityno']").val();
                 var viewUtilityid=$("[name='viewUtilityid']").val();
@@ -37,7 +37,7 @@
                 });
             });
 
-            $("[id='pass']").blur(function () {
+            $("[id='pass']").click(function () {
 
                 var viewUtilityno=$("[name='viewUtilityno']").val();
                 var viewUtilityid=$("[name='viewUtilityid']").val();

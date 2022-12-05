@@ -219,7 +219,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
                     viewOpenEnterprise.setStatus("已撤销");
                 }
                 if(status.equals("D")){
-                    viewOpenEnterprise.setStatus("复核未成功");
+                    viewOpenEnterprise.setStatus("复核未通过");
                 }
                 viewOpenEnterprise.setEnterPriseId(rs.getString("enterprise_id"));
                 viewOpenEnterprise.setInstitutyId(rs.getString("instituty_id"));
@@ -243,13 +243,13 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         return list;
     }
 
-//根据编号查询id
+//根据编号查询所有信息
     @Override
-    public Ticketopen quaryIdByNo(Ticketopen ticketopen) {
+    public Ticketopen quaryAllByNo(Ticketopen ticketopen) {
           Ticketopen ticketopen1=new Ticketopen();
         try {
             con = DBHelper.getConn();
-            String sql = "SELECT id FROM ticket_open where  no=?";
+            String sql = "SELECT * FROM ticket_open where  no=?";
             ps = con.prepareStatement(sql);
             ps.setString(1,ticketopen.getNo());
             rs = ps.executeQuery();
@@ -257,7 +257,15 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
 
                 ticketopen1=new Ticketopen();
                 ticketopen1.setId(rs.getInt(1));
-
+                ticketopen1.setNo(rs.getString(2));
+                ticketopen1.setEnterPriseId(rs.getString(3));
+                ticketopen1.setAcquirerEnterPriseId(rs.getString(4));
+                ticketopen1.setAmount(rs.getDouble(5));
+                ticketopen1.setInstitutyId(rs.getInt(6));
+                ticketopen1.setPaymentInterestType(rs.getString(7));
+                ticketopen1.setStatus(rs.getString(8));
+                ticketopen1.setUplinkAddress(rs.getString(9));
+                ticketopen1.setTicketRemark(rs.getString(10));
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -85,53 +85,129 @@
 
             //窗体内容加载后，加载开单表的分页数据
             //看见具体开单表值
-            eval("var pageHelper="+str);
+            eval("var pageHelper=" + str);
 
-            for(var i=0;i<pageHelper.pageList.length;i++){
-                var obj="<tr data-id='2'><td class='table-title'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
-                    pageHelper.pageList[i].uplinkAddress+"</td><td class='am-hide-sm-only'>" +
-                    pageHelper.pageList[i].status+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
+            for (var i = 0; i < pageHelper.pageList.length; i++) {
+                if (pageHelper.pageList[i].status == "成功") {
+                    var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>" +
+                        "<span class='ele-dot-status ele-dot-status-success'><span>" +
+                        "<span class='ele-dot-text' style='width: 80px;'>成功</span><td>" +
+                        "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>" +
+                        "<a href='mst?i=3'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                        "</span>详情</span></a></div></div></td></tr>";
+                }
+                if (pageHelper.pageList[i].status == "开单中") {
+                    var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>"+
+                        "<span class='ele-dot-status ele-dot-status-info'><span>"+
+                        "<span class='ele-dot-text' style='width: 80px;'>开单中</span><td>"+
+                        "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
+                        "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "</span>详情</span></a><span class='am-text-secondary am-icon' style='cursor:pointer'><span>"+
+                        "</span>撤销</span></div></div></td>";
+                }
+                if (pageHelper.pageList[i].status == "复核未通过") {
+                    var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                        pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>"+
+                        "<span class='ele-dot-status ele-dot-status-error'><span>"+
+                        "<span class='ele-dot-text' style='width: 80px;'>复核未通过</span><td>"+
+                        "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
+                        "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                        "</span>重新申请</span></a></div></div></td>";
+                }
+
+
                 $(obj).appendTo("[id='doc-modal-list']");
             }
 
             //看见分页序号超链接
 
-            for(var i=1;i<=pageHelper.totalPage;i++){
-                var obj="<li id='page' class='am-active'><a value='"+i+"'>"+i+"</a></li>";
+            for (var i = 1; i <= pageHelper.totalPage; i++) {
+                var obj = "<li id='page' class='am-active'><a value='" + i + "'>" + i + "</a></li>";
                 $(obj).appendTo("[class='am-disabled']");
             }
 
 
             //窗体加载完后，给分页超链接绑定一个点击事件
-            $(document).on("click","a",function(){
+            $(document).on("click", "a", function () {
                 // 当a超链接点击的时候，向后台服务器发送ajax请求：
-                var val=$(this)[0].getAttribute("value");
+                var val = $(this)[0].getAttribute("value");
 
-                $.get("mst?i=2","index="+val,function (str) {
-                    eval("var pageHelper="+str);
-                    // 清空tr行
+                $.get("mst?i=2", "index=" + val, function (str) {
+                    eval("var pageHelper=" + str);
+                    //清空tr行
                     $("tbody").empty();
-                    for(var i=0;i<pageHelper.pageList.length;i++){
-
-                        var obj="<tr data-id='2'><td class='table-title'>"+pageHelper.pageList[i].no+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].acquirerEnterPriseName+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].amount+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].enterPriseName+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].institutyName+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].createTime+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].expiryTime+"</td><td class='am-hide-sm-only'>"+
-                            pageHelper.pageList[i].uplinkAddress+"</td><td class='am-hide-sm-only'>" +
-                            pageHelper.pageList[i].status+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><a href='href='rds?no="+pageHelper.pageList[i].no+"''><span class='am-text-secondary' style='cursor:pointer'><span>复核</span></span></a></div></div></td></tr>";
-                        $(obj).appendTo("tbody");
-
+                    for (var i = 0; i < pageHelper.pageList.length; i++) {
+                        if (pageHelper.pageList[i].status == "成功") {
+                            var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>" +
+                                "<span class='ele-dot-status ele-dot-status-success'><span>" +
+                                "<span class='ele-dot-text' style='width: 80px;'>成功</span><td>" +
+                                "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>" +
+                                "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                                "</span>详情</span></a></div></div></td></tr>";
+                        }
+                        if (pageHelper.pageList[i].status == "开单中") {
+                            var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>"+
+                                "<span class='ele-dot-status ele-dot-status-info'><span>"+
+                                "<span class='ele-dot-text' style='width: 80px;'>开单中</span><td>"+
+                                "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
+                                "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "</span>详情</span></a><span class='am-text-secondary am-icon' style='cursor:pointer'><span>"+
+                                "</span>撤销</span></div></div></td>";
+                        }
+                        if (pageHelper.pageList[i].status == "复核未通过") {
+                            var obj = "<tr data-id='2'><td class='am-hide-sm-only'>" + pageHelper.pageList[i].no + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].acquirerEnterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].amount + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].enterPriseName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].institutyName + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].createTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].expiryTime + "</td><td class='am-hide-sm-only'>" +
+                                pageHelper.pageList[i].uplinkAddress + "</td><td class='am-hide-sm-only'>"+
+                                "<span class='ele-dot-status ele-dot-status-error'><span>"+
+                                "<span class='ele-dot-text' style='width: 80px;'>复核未通过</span><td>"+
+                                "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
+                                "<a href='open-detail.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                                "</span>重新申请</span></a></div></div></td>";
+                        }
+                        $(obj).appendTo("[id='doc-modal-list']");
                     }
-                })
+                });
             });
         }
 
@@ -198,7 +274,7 @@
                                 <i class="am-icon-angle-right"></i>
                                 <span>开具付款凭证</span>
                             </a>
-                            <a href="open-list.jsp.jsp" class="active">
+                            <a href="open-list.jsp" class="active">
                                 <i class="am-icon-angle-right"></i>
                                 <span>付款列表</span>
                             </a>
@@ -344,7 +420,7 @@
                                 <td>
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <a href="open-detail.jsp"><span class="am-text-secondary"
+                                            <a href="mst?i=3" ><span class="am-text-secondary"
                                                                             style="cursor:pointer"><span></span>
                                                         详情</span></a>
                                         </div>
@@ -377,14 +453,14 @@
                                 </td>
                             </tr>
                             <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220407000004</td>
-                                <td class="am-hide-sm-only">百度科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D70</td>
+<%--                                <td class="am-hide-sm-only">N20220407000004</td>--%>
+<%--                                <td class="am-hide-sm-only">百度科技有限公司</td>--%>
+<%--                                <td class="am-hide-sm-only">1,000,000.00</td>--%>
+<%--                                <td class="am-hide-sm-only">腾讯科技有限公司</td>--%>
+<%--                                <td class="am-hide-sm-only">中国工商银行</td>--%>
+<%--                                <td class="am-hide-sm-only">2021-12-31</td>--%>
+<%--                                <td class="am-hide-sm-only">2021-12-31</td>--%>
+<%--                                <td class="am-hide-sm-only">F64A3FA774552D70</td>--%>
                                 <td class="am-hide-sm-only">
                                             <span class="ele-dot-status ele-dot-status-error"><span>
                                             <span class="ele-dot-text" style="width: 80px;">复核未通过</span>
@@ -402,14 +478,14 @@
                                 </td>
                             </tr>
                             <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220407000004</td>
-                                <td class="am-hide-sm-only">百度科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D70</td>
+<%--                                <td class="am-hide-sm-only">N20220407000004</td>--%>
+<%--                                <td class="am-hide-sm-only">百度科技有限公司</td>--%>
+<%--                                <td class="am-hide-sm-only">1,000,000.00</td>--%>
+<%--                                <td class="am-hide-sm-only">腾讯科技有限公司</td>--%>
+<%--                                <td class="am-hide-sm-only">中国工商银行</td>--%>
+<%--                                <td class="am-hide-sm-only">2021-12-31</td>--%>
+<%--                                <td class="am-hide-sm-only">2021-12-31</td>--%>
+<%--                                <td class="am-hide-sm-only">F64A3FA774552D70</td>--%>
                                 <td class="am-hide-sm-only">
                                             <span class="ele-dot-status ele-dot-status-error"><span>
                                             <span class="ele-dot-text" style="width: 80px;">已撤销</span>

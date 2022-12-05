@@ -55,7 +55,7 @@ public interface ITicketOpenDao {
      */
     public int queryCountNum1(SqlHelper sqlHelper);
     /*
-   根据凭证编号查开单id
+   根据凭证编号查开单所有
     */
-    public Ticketopen quaryIdByNo(Ticketopen ticketopen);
+    public Ticketopen quaryAllByNo(Ticketopen ticketopen);
 }

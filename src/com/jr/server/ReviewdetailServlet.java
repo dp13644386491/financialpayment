@@ -40,6 +40,7 @@ public class ReviewdetailServlet extends HttpServlet {
             session.setAttribute("viewUtility",viewUtility);
             session.setAttribute("day",day);
 
+
             request.getRequestDispatcher("check-detail.jsp").forward(request,response);
         }
         if (str.equals("1")) {

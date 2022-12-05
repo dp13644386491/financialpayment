@@ -56,7 +56,7 @@ public interface ITicketopenBiz {
     public int getAllnum1(SqlHelper sqlHelper);
     /*
 
-    根据凭证编号查开单id
+    根据凭证编号查开单所有信息
      */
-    public Ticketopen quaryIdByNo(Ticketopen ticketopen);
+    public Ticketopen quaryAllByNo(Ticketopen ticketopen);
 }
