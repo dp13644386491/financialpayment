@@ -104,5 +104,4 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
         return num;
     }
 
-
 }

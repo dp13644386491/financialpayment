@@ -90,6 +90,7 @@ public class ReviewdetailServlet extends HttpServlet {
                     Gson gson=new Gson();
                     response.getWriter().println(gson.toJson(num1));
                 }
+
             }
         }
 

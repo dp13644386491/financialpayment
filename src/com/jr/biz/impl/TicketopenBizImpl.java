@@ -3,18 +3,13 @@ package com.jr.biz.impl;
 import com.jr.biz.ITicketopenBiz;
 import com.jr.dao.impl.TicketOpenDaoImpl;
 import com.jr.entry.Ticketopen;
-import com.jr.util.DBHelper;
 import com.jr.util.PageHelper;
 import com.jr.util.SqlHelper;
 import com.jr.util.ViewOpenEnterprise;
 
-import javax.servlet.annotation.WebServlet;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TicketopenBizImpl implements ITicketopenBiz {

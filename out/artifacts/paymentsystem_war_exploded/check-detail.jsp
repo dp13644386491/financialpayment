@@ -30,6 +30,7 @@
                 var remark=$("[name='txtarea']").val();
                 alert(remark+"......");
                 $.get("rds","i=1&no="+viewUtilityno+"&ticket_id="+viewUtilityid+"&remark="+remark,function (str) {
+                    alert(str);
                     if(str==1){
                         window.location.href="check-list.jsp";
                     }
