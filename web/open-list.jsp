@@ -97,7 +97,7 @@
                         "<span class='ele-dot-status ele-dot-status-success'><span>" +
                         "<span class='ele-dot-text' style='width: 80px;'>成功</span><td>" +
                         "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>" +
-                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                        "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                         "</span>详情</span></a></div></div></td></tr>";
                 }
                 if (pageHelper.pageList[i].status == "开单中") {
@@ -112,7 +112,7 @@
                         "<span class='ele-dot-status ele-dot-status-info'><span>"+
                         "<span class='ele-dot-text' style='width: 80px;'>开单中</span><td>"+
                         "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>"+
                         "</span>详情</span></a><span class='am-text-secondary am-icon' style='cursor:pointer'><span>"+
                         "</span>撤销</span></div></div></td>";
                 }
@@ -128,7 +128,7 @@
                         "<span class='ele-dot-status ele-dot-status-error'><span>"+
                         "<span class='ele-dot-text' style='width: 80px;'>复核未通过</span><td>"+
                         "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>"+
                         "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                         "</span>重新申请</span></a></div></div></td>";
                 }
@@ -144,7 +144,7 @@
                         "<span class='ele-dot-status ele-dot-status-error'><span>"+
                         "<span class='ele-dot-text' style='width: 80px;'>已撤销</span>"+
                         "<td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                        "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                        "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>"+
                         "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                         "</span>重新申请</span></a></div></div></td>";
                 }
@@ -183,7 +183,7 @@
                                 "<span class='ele-dot-status ele-dot-status-success'><span>" +
                                 "<span class='ele-dot-text' style='width: 80px;'>成功</span><td>" +
                                 "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>" +
-                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>" +
+                                "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                                 "</span>详情</span></a></div></div></td></tr>";
                         }
                         if (pageHelper.pageList[i].status == "开单中") {
@@ -198,7 +198,7 @@
                                 "<span class='ele-dot-status ele-dot-status-info'><span>"+
                                 "<span class='ele-dot-text' style='width: 80px;'>开单中</span><td>"+
                                 "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>"+
                                 "</span>详情</span></a><span class='am-text-secondary am-icon' style='cursor:pointer'><span>"+
                                 "</span>撤销</span></div></div></td>";
                         }
@@ -214,7 +214,7 @@
                                 "<span class='ele-dot-status ele-dot-status-error'><span>"+
                                 "<span class='ele-dot-text' style='width: 80px;'>复核未通过</span><td>"+
                                 "<div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>"+
                                 "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                                 "</span>重新申请</span></a></div></div></td>";
                         }
@@ -230,7 +230,7 @@
                                 "<span class='ele-dot-status ele-dot-status-error'><span>"+
                                 "<span class='ele-dot-text' style='width: 80px;'>已撤销</span>"+
                                 "<td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'>"+
-                                "<a href='mst?i=3&no'+pageHelper.pageList[i].no><span class='am-text-secondary' style='cursor:pointer'><span>"+
+                                "<a href='mst?i=3&no="+pageHelper.pageList[i].no+"'><span class='am-text-secondary' style='cursor:pointer'><span>"+
                                 "</span>详情</span></a><a href='ticket-open.jsp'><span class='am-text-secondary' style='cursor:pointer'><span>" +
                                 "</span>重新申请</span></a></div></div></td>";
                         }

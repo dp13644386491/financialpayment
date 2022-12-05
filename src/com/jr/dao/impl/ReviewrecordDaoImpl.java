@@ -27,17 +27,27 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
      * 根据开单no查询审核记录信息
      * */
     @Override
-    public Reviewrecord queryReviewrecord(int no) {
+    public Reviewrecord queryReviewrecord(String no) {
         Reviewrecord reviewrecord=null;
         try {
             con = DBHelper.getConn();
             String sql="SELECT * FROM review_record WHERE ticket_open_id=(SELECT id FROM ticket_open WHERE no=?)";
             ps = con.prepareStatement(sql);
-            ps.setInt(1,no);
+            ps.setString(1,no);
             rs = ps.executeQuery();
             while (rs.next()){
                 reviewrecord = new Reviewrecord();
                 reviewrecord.setRemark(rs.getString("remark"));
+                String status=rs.getString("review_status");
+                if(status.equals("A")){
+                    reviewrecord.setReviewStatus("审核中");
+                }
+                if(status.equals("B")){
+                    reviewrecord.setReviewStatus("审核通过");
+                }
+                if(status.equals("C")){
+                    reviewrecord.setReviewStatus("审核未通过");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -9,10 +9,7 @@ import com.jr.entry.Enterprise;
 import com.jr.entry.Instituty;
 import com.jr.entry.Reviewrecord;
 import com.jr.entry.Ticketopen;
-import com.jr.util.MD5Util;
-import com.jr.util.PageHelper;
-import com.jr.util.SqlHelper;
-import com.jr.util.ViewOpenEnterprise;
+import com.jr.util.*;
 
 import javax.lang.model.element.NestingKind;
 import javax.servlet.ServletException;
@@ -44,9 +41,33 @@ public class TicketOpenServlet extends HttpServlet {
             response.getWriter().println(gson.toJson(enterprise1));
         }
         if(num!=null){
-            page(request,response);
+            if(num.equals("1")||num.equals("2")){
+                page(request,response);
+            }if (num.equals("3")){
+                selectALLByViewUtility(request,response);
+            }
         }
 
+
+    }
+
+    public void  selectALLByViewUtility(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String no=request.getParameter("no");
+        ViewUtility viewUtility2=ViewUtility.sleectInfoView(no);
+        ReviewrecordBizImpl reviewrecordBiz1=new ReviewrecordBizImpl();
+        Reviewrecord reviewrecord1=reviewrecordBiz1.getReviewrecord(no);
+        int day=0;
+        try {
+            day= (int) ((new SimpleDateFormat("yyyy-MM-dd").parse(viewUtility2.getExpriyTime()).getTime()-new Date().getTime())/(1000*3600*24));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(viewUtility2);
+        HttpSession session1=request.getSession();
+        session1.setAttribute("xcv",viewUtility2);
+        session1.setAttribute("dfg",reviewrecord1);
+        session1.setAttribute("day1",day);
+        request.getRequestDispatcher("open-detail.jsp").forward(request,response);
     }
 
     protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

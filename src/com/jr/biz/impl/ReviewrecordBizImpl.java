@@ -29,7 +29,7 @@ public class ReviewrecordBizImpl implements IReviewrecordBiz {
      * @return
      */
     @Override
-    public Reviewrecord getReviewrecord(int no) {
+    public Reviewrecord getReviewrecord(String no) {
 
         return rrdi.queryReviewrecord(no);
     }

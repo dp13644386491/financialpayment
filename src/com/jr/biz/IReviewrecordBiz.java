@@ -11,7 +11,7 @@ public interface IReviewrecordBiz {
     /*
     * 根据开单no获取审核记录信息
     * */
-    public Reviewrecord getReviewrecord(int no);
+    public Reviewrecord getReviewrecord(String no);
 
     /*
     * 根据开单id修改审核记录信息为C：审核未通过，修改备注

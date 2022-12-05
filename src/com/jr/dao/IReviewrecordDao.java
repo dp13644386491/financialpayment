@@ -12,7 +12,7 @@ public interface IReviewrecordDao {
     /*
      * 根据开单no查询审核记录信息
      * */
-    public Reviewrecord queryReviewrecord(int no);
+    public Reviewrecord queryReviewrecord(String no);
 
     /*
      * 根据开单id修改审核记录信息为C：审核未通过，修改备注
