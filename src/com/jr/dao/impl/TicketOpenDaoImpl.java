@@ -81,11 +81,23 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
     }
 
     /**
-     * 根据开单id更改票据状态
+     * 根据开单no更改票据状态为D：复核未通过
      */
     @Override
     public int alertTicketStatus(Ticketopen ticketopen) {
-        return 0;
+        String sql="UPDATE ticket_open SET status='D' WHERE no=?";
+        int num=upd(sql,ticketopen.getNo());
+        return num;
+    }
+
+    /**
+     * 更新开单状态为A：成功
+     */
+    @Override
+    public int alertTicketStatus1(Ticketopen ticketopen) {
+        String sql="UPDATE ticket_open SET status='A' WHERE no=?";
+        int num=upd(sql,ticketopen.getNo());
+        return num;
     }
 
     /**

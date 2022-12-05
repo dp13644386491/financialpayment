@@ -12,4 +12,14 @@ public interface IReviewrecordBiz {
     * 根据开单no获取审核记录信息
     * */
     public Reviewrecord getReviewrecord(int no);
+
+    /*
+    * 根据开单id修改审核记录信息为C：审核未通过，修改备注
+    * */
+    public  int changeeviewrecord(Reviewrecord reviewrecord);
+
+    /*
+     * 根据开单id修改审核记录信息为B：审核通过；，修改备注
+     * */
+    public  int changeeviewrecord1(Reviewrecord reviewrecord);
 }

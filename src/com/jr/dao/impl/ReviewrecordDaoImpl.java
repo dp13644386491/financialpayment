@@ -2,6 +2,7 @@ package com.jr.dao.impl;
 
 import com.jr.dao.IReviewrecordDao;
 import com.jr.entry.Reviewrecord;
+import com.jr.entry.Ticketopen;
 import com.jr.util.DBHelper;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
         Reviewrecord reviewrecord=null;
         try {
             con = DBHelper.getConn();
-            String sql="SELECT * FROM reviewrecord WHERE ticket_open_id=(SELECT id FROM ticket_open WHERE no=?)";
+            String sql="SELECT * FROM review_record WHERE ticket_open_id=(SELECT id FROM ticket_open WHERE no=?)";
             ps = con.prepareStatement(sql);
             ps.setInt(1,no);
             rs = ps.executeQuery();
@@ -47,5 +48,51 @@ public class ReviewrecordDaoImpl implements IReviewrecordDao {
             e.printStackTrace();
         }
         return reviewrecord;
+    }
+
+    /*
+     * 根据开单id修改审核记录信息为C：审核未通过，修改备注
+     * */
+    @Override
+    public int updateReviewrecord(Reviewrecord reviewrecord) {
+        String sql="UPDATE review_record SET review_status='C',remark=? WHERE ticket_open_id=?";
+        int num=upd(sql,reviewrecord.getRemark(),reviewrecord.getTicketOpenId());
+        return num;
+    }
+
+    /*
+     * 根据开单id修改审核记录信息为B：审核通过；，修改备注
+     * */
+    @Override
+    public int updateReviewrecord1(Reviewrecord reviewrecord) {
+        String sql="UPDATE review_record SET review_status='B',remark=? WHERE ticket_open_id=?";
+        int num=upd(sql,reviewrecord.getRemark(),reviewrecord.getTicketOpenId());
+        return num;
+    }
+
+    /**
+     *增删改通用方法
+     */
+    public int upd(String sql, Object... objs) {
+
+        int num = 0;
+        try {
+            con = DBHelper.getConn();
+            ps = con.prepareStatement(sql);
+            for (int i = 0; i < objs.length; i++) {
+                ps.setObject(i + 1, objs[i]);
+            }
+            num = ps.executeUpdate();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBHelper.closeAll(rs, ps, con);
+        }
+        return num;
     }
 }

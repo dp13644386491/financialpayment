@@ -57,13 +57,22 @@ public class TicketopenBizImpl implements ITicketopenBiz {
     }
 
     /**
-     * 更新开单状态
+     * 更新开单状态为D：复核未通过
      * @param ticketopen
      * @return
      */
     @Override
     public int updateTicketopenStatus(Ticketopen ticketopen) {
-        return 0;
+
+        return todi.alertTicketStatus(ticketopen);
+    }
+
+    /**
+     * 更新开单状态为A：成功
+     */
+    @Override
+    public int updateTicketopenStatus1(Ticketopen ticketopen) {
+        return todi.alertTicketStatus1(ticketopen);
     }
 
     @Override
