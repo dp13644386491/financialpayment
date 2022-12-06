@@ -34,6 +34,8 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
      * 这里利用SqlHelper工具类返回的字符串进行查询
      * where后面加上status='开单中'
      * */
+
+
     @Override
     public List<Ticketopen> queryAllByConditionsOnTheBill(SqlHelper sqlHelper) {
         List<Ticketopen> list = new ArrayList<>();

@@ -43,6 +43,8 @@ public class InstitutyDaoImpl implements IInstitutyDao {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+
         }
         return list;
     }

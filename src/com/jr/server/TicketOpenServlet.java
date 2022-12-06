@@ -69,7 +69,7 @@ public class TicketOpenServlet extends HttpServlet {
         session1.setAttribute("day1",day);
         request.getRequestDispatcher("open-detail.jsp").forward(request,response);
     }
-
+//分页代码
     protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
@@ -125,20 +125,7 @@ public class TicketOpenServlet extends HttpServlet {
         super.service(req, resp);
     }
 
-    /**
-     * 获取所有ticketopen开单表中的信息
-     */
-    protected void getAllTicketopeninfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    }
-/**
- * 获取所有符合条件的ticketopen开单表信息
- * 这里使用前台异步查询,提供了字符串拼接工具类
- * 可以直接在里边拼接所需要属性的字符串
- * */
-    protected void getTicketopeninfoByconditions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
     /**
      * 添加开单表信息
      */

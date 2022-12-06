@@ -155,9 +155,9 @@
 
             //看见分页序号超链接
 
-            for (var i = 1; i <= pageHelper.totalPage; i++) {
+            for (var i = pageHelper.totalPage; i >= 1; i--) {
                 var obj = "<li id='page' class='am-active'><a value='" + i + "'>" + i + "</a></li>";
-                $(obj).appendTo("[class='am-disabled']");
+                $("[class='am-disabled']").after($(obj));
             }
 
 
